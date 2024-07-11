@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2024 at 06:04 PM
+-- Generation Time: Jul 11, 2024 at 09:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,14 +35,6 @@ CREATE TABLE `booking` (
   `PassengerID` int(11) DEFAULT NULL,
   `BookingTime` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`BookingID`, `UserID`, `FlightID`, `SeatID`, `PassengerID`, `BookingTime`) VALUES
-(1, 1, 1, 1, 1, '2024-07-08 08:23:41'),
-(2, 3, 1, 1, NULL, '2024-07-08 11:49:10');
 
 -- --------------------------------------------------------
 
@@ -115,10 +107,10 @@ INSERT INTO `plane` (`PlaneID`, `PlaneModel`) VALUES
 
 CREATE TABLE `seat` (
   `SeatID` int(11) NOT NULL,
-  `PlaneID` int(11) DEFAULT NULL,
+  `FlightID` int(11) DEFAULT NULL,
   `SeatNumber` varchar(10) NOT NULL,
   `Status` enum('booked','locked','free') DEFAULT 'free',
-  `IsFireExit` tinyint(1) DEFAULT 0,
+  `IsFireExit` enum('1','0') NOT NULL DEFAULT '0',
   `LockUntil` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -126,19 +118,67 @@ CREATE TABLE `seat` (
 -- Dumping data for table `seat`
 --
 
-INSERT INTO `seat` (`SeatID`, `PlaneID`, `SeatNumber`, `Status`, `IsFireExit`, `LockUntil`) VALUES
-(1, 1, '1A', 'booked', 0, NULL),
-(2, 1, '1B', 'free', 0, NULL),
-(3, 1, '1C', 'free', 0, NULL),
-(4, 1, '2A', 'free', 1, NULL),
-(5, 1, '2B', 'free', 1, NULL),
-(6, 1, '2C', 'free', 0, NULL),
-(7, 2, '1A', 'locked', 0, '2024-07-08 21:15:50'),
-(8, 2, '1B', 'free', 0, NULL),
-(9, 2, '1C', 'free', 0, NULL),
-(10, 2, '2A', 'free', 1, NULL),
-(11, 2, '2B', 'free', 1, NULL),
-(12, 2, '2C', 'free', 0, NULL);
+INSERT INTO `seat` (`SeatID`, `FlightID`, `SeatNumber`, `Status`, `IsFireExit`, `LockUntil`) VALUES
+(134, 1, '1A', 'locked', '0', '2024-07-12 00:17:09'),
+(135, 1, '1B', 'free', '0', NULL),
+(136, 1, '1C', 'free', '0', NULL),
+(137, 1, '1D', 'free', '0', NULL),
+(138, 1, '1E', 'free', '0', NULL),
+(139, 1, '1F', 'free', '0', NULL),
+(140, 1, '2A', 'locked', '0', '2024-07-12 00:20:35'),
+(141, 1, '2B', 'free', '0', NULL),
+(142, 1, '2C', 'free', '0', NULL),
+(143, 1, '2D', 'free', '0', NULL),
+(144, 1, '2E', 'free', '0', NULL),
+(145, 1, '2F', 'free', '0', NULL),
+(146, 1, '3A', 'locked', '0', '2024-07-12 00:30:32'),
+(147, 1, '3B', 'free', '0', NULL),
+(148, 1, '3C', 'free', '0', NULL),
+(149, 1, '3D', 'locked', '0', NULL),
+(150, 1, '3E', 'free', '0', NULL),
+(151, 1, '3F', 'free', '0', NULL),
+(152, 1, '4A', 'locked', '0', '2024-07-12 00:26:40'),
+(153, 1, '4B', 'free', '0', NULL),
+(154, 1, '4C', 'free', '0', NULL),
+(155, 1, '4D', 'booked', '0', NULL),
+(156, 1, '4E', 'free', '0', NULL),
+(157, 1, '4F', 'free', '0', NULL),
+(158, 1, '5A', 'locked', '0', '2024-07-12 00:26:25'),
+(159, 1, '5B', 'free', '0', NULL),
+(160, 1, '5C', 'locked', '0', NULL),
+(161, 1, '5D', 'free', '0', NULL),
+(162, 1, '5E', 'free', '0', NULL),
+(163, 1, '5F', 'free', '0', NULL),
+(164, 1, '6A', 'booked', '0', NULL),
+(165, 1, '6B', 'free', '0', NULL),
+(166, 1, '6C', 'free', '0', NULL),
+(167, 1, '6D', 'free', '0', NULL),
+(168, 1, '6E', 'free', '0', NULL),
+(169, 1, '6F', 'free', '0', NULL),
+(170, 1, '7A', 'locked', '0', '2024-07-12 00:38:06'),
+(171, 1, '7B', 'free', '0', NULL),
+(172, 1, '7C', 'free', '0', NULL),
+(173, 1, '7D', 'free', '0', NULL),
+(174, 1, '7E', 'free', '0', NULL),
+(175, 1, '7F', 'free', '0', NULL),
+(176, 1, '8A', 'locked', '0', '2024-07-12 00:52:02'),
+(177, 1, '8B', 'free', '0', NULL),
+(178, 1, '8C', 'free', '0', NULL),
+(179, 1, '8D', 'free', '0', NULL),
+(180, 1, '8E', 'free', '0', NULL),
+(181, 1, '8F', 'free', '0', NULL),
+(182, 1, '9A', 'locked', '0', '2024-07-12 00:52:17'),
+(183, 1, '9B', 'free', '0', NULL),
+(184, 1, '9C', 'free', '0', NULL),
+(185, 1, '9D', 'free', '0', NULL),
+(186, 1, '9E', 'free', '0', NULL),
+(187, 1, '9F', 'free', '0', NULL),
+(188, 1, '10A', 'free', '1', NULL),
+(189, 1, '10B', 'free', '1', NULL),
+(190, 1, '10C', 'free', '1', NULL),
+(191, 1, '10D', 'free', '1', NULL),
+(192, 1, '10E', 'free', '1', NULL),
+(193, 1, '10F', 'free', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -202,7 +242,7 @@ ALTER TABLE `plane`
 --
 ALTER TABLE `seat`
   ADD PRIMARY KEY (`SeatID`),
-  ADD KEY `PlaneID` (`PlaneID`);
+  ADD KEY `PlaneID` (`FlightID`);
 
 --
 -- Indexes for table `user`
@@ -243,7 +283,7 @@ ALTER TABLE `plane`
 -- AUTO_INCREMENT for table `seat`
 --
 ALTER TABLE `seat`
-  MODIFY `SeatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `SeatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -280,7 +320,7 @@ ALTER TABLE `passenger`
 -- Constraints for table `seat`
 --
 ALTER TABLE `seat`
-  ADD CONSTRAINT `seat_ibfk_1` FOREIGN KEY (`PlaneID`) REFERENCES `plane` (`PlaneID`);
+  ADD CONSTRAINT `seat_ibfk_1` FOREIGN KEY (`FlightID`) REFERENCES `plane` (`PlaneID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
