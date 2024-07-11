@@ -2,7 +2,6 @@
 include('includes/db.php');
 session_start();
 
-
 $sql = "SELECT * FROM flight";
 $result = $conn->query($sql);
 include('includes/header.php');
@@ -17,7 +16,6 @@ include('includes/header.php');
             <th>Arrival</th>
             <th>Origin</th>
             <th>Destination</th>
-            <!-- <th>Seats</th> -->
             <th>Action</th>
         </tr>
         <?php while ($row = $result->fetch_assoc()) : ?>
@@ -27,16 +25,13 @@ include('includes/header.php');
                 <td><?php echo $row['ArrivalTime']; ?></td>
                 <td><?php echo $row['DepartureLocation']; ?></td>
                 <td><?php echo $row['ArrivalLocation']; ?></td>
-                <!-- <td><?php echo $row['seats']; ?></td> -->
                 <?php
                 if (!isset($_SESSION['user_id'])) {
                 ?>
                     <td>
-                        <form method="POST" action="lock_seat.php">
+                        <form method="POST" action="seat/seat.php">
                             <input type="hidden" name="flight_id" value="<?php echo $row['FlightID']; ?>">
-                            <label for="seat_number">Seat Number:</label>
-                            <input type="text" name="seat_number" required>
-                            <button type="submit">Lock</button>
+                            <button type="submit">View Seats</button>
                         </form>
                     </td>
                 <?php

@@ -13,8 +13,8 @@
         <?php
         include('../includes/db.php');
 
-        $planeID = 1; // Example plane ID
-        $sql = "SELECT * FROM seat WHERE PlaneID = $planeID ORDER BY SeatID";
+        $flightId = isset($_POST['flight_id']) ? intval($_POST['flight_id']) : NULL; // Default to 1 if not set
+        $sql = "SELECT * FROM seat WHERE FlightID = $flightId ORDER BY SeatID";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -40,10 +40,12 @@
                     <div class="backrest"></div>
                     <div class="seat-cushion"></div>
                     <div class="armrest armrest-left"></div>
-                    <div class="armrest armrest-right"></div>
-                    <button class="lock-button btn btn-primary">Lock</button>
-                </div>';
+                    <div class="armrest armrest-right"></div>';
 
+                if ($seatClass == 'free') {
+                    echo '<button class="lock-button btn btn-primary">Lock</button>';
+                }
+                echo  '</div>';
                 $rowCount++;
             }
             echo '</div>';
@@ -56,10 +58,7 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // const flightId = <?php
-                                // echo json_encode($_POST['flight_id']); 
-                                ?>;
-            const flightId = 1;
+            const flightId = <?php echo json_encode($flightId); ?>;
 
             document.querySelectorAll('.lock-button').forEach(button => {
                 button.addEventListener('click', function() {
