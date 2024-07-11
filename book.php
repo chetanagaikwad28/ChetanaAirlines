@@ -42,9 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the seat is already locked or booked
         $sql = "SELECT * FROM seat WHERE SeatNumber = '$seat_number' AND PlaneID = '$plane_id' AND Status = 'free'";
         $result = $conn->query($sql);
+        // Call the function to release locked seats
+        release_locked_seats($conn);
         if ($result->num_rows == 0) {
             echo "Seat is already booked or locked.";
         } else {
+            // Call the function to release locked seats
+            release_locked_seats($conn);
             // Lock the seat for 10 minutes
             $lock_until = date('Y-m-d H:i:s', strtotime('+10 minutes'));
             $sql = "UPDATE seat SET Status = 'locked', LockUntil = '$lock_until' WHERE SeatNumber = '$seat_number' AND PlaneID = '$plane_id'";
@@ -56,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $sql = "UPDATE seat SET Status = 'booked', LockUntil = NULL WHERE SeatNumber = '$seat_number' AND PlaneID = '$plane_id'";
                     $conn->query($sql);
                     echo "Booking successful.";
+                    // Call the function to release locked seats
+                    release_locked_seats($conn);
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }

@@ -3,8 +3,9 @@ include('includes/db.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $flight_id = $_POST['flight_id'];
-    $seat_number = $_POST['seat_number'];
+    // Sanitize inputs to prevent SQL injection
+    $flight_id = intval($_POST['flight_id']);
+    $seat_number = $conn->real_escape_string($_POST['seat_number']);
 
     // Fetch PlaneID from the flight table
     $sql = "SELECT PlaneID FROM flight WHERE FlightID = '$flight_id'";
@@ -32,4 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
+} else {
+    echo "Invalid request method.";
 }
+
+// Redirect back to the seat layout or another appropriate page
+header("Location: index.php");
+exit();
