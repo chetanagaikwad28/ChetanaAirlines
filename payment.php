@@ -46,6 +46,7 @@
             border-radius: 5px;
             margin-bottom: 10px;
             background-color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
         }
 
         .payment-option img {
@@ -53,10 +54,15 @@
             margin-right: 10px;
         }
 
+        .payment-option input {
+            margin-right: 10px;
+        }
+
         .payment-option label {
             margin: 0;
             font-weight: bold;
             color: #007bff;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -141,43 +147,49 @@
         $conn->close();
         ?>
 
-        <div class="payment-option">
-            <img src="upi.png" alt="UPI">
-            <label for="upi">UPI</label>
-        </div>
-        <div class="payment-option">
-            <img src="credit-card.png" alt="Credit Card">
-            <label for="credit-card">Credit/Debit Card</label>
-        </div>
-        <div class="payment-option">
-            <img src="gift-voucher.png" alt="Gift Voucher">
-            <label for="gift-voucher">Gift Voucher</label>
-        </div>
-        <div class="payment-option">
-            <img src="net-banking.png" alt="Net Banking">
-            <label for="net-banking">Net Banking</label>
-        </div>
+        <form action="finalize_payment.php" method="post">
+            <!-- Payment Options -->
+            <div class="payment-option">
+                <input type="radio" name="payment_method" id="upi" value="UPI" required>
+                <img src="upi.png" alt="UPI">
+                <label for="upi">UPI</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" name="payment_method" id="credit-card" value="Credit/Debit Card" required>
+                <img src="credit-card.png" alt="Credit Card">
+                <label for="credit-card">Credit/Debit Card</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" name="payment_method" id="gift-voucher" value="Gift Voucher" required>
+                <img src="gift-voucher.png" alt="Gift Voucher">
+                <label for="gift-voucher">Gift Voucher</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" name="payment_method" id="net-banking" value="Net Banking" required>
+                <img src="net-banking.png" alt="Net Banking">
+                <label for="net-banking">Net Banking</label>
+            </div>
+
+            <!-- Hidden fields to pass necessary data -->
+            <?php
+            foreach ($_POST as $key => $value) {
+                if (is_array($value)) {
+                    foreach ($value as $subKey => $subValue) {
+                        echo "<input type='hidden' name='{$key}[$subKey]' value='" . htmlspecialchars($subValue) . "'>";
+                    }
+                } else {
+                    echo "<input type='hidden' name='$key' value='" . htmlspecialchars($value) . "'>";
+                }
+            }
+            ?>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success mt-3">Pay Now</button>
+            </div>
+        </form>
 
         <div class="text-center">
             <a href="index.php" class="btn btn-primary mt-3">Back to Home</a>
-        </div>
-
-        <div class="text-center">
-            <form action="finalize_payment.php" method="post">
-                <!-- Add hidden fields to pass necessary data -->
-                <?php
-                foreach ($_POST as $key => $value) {
-                    if (is_array($value)) {
-                        foreach ($value as $subKey => $subValue) {
-                            echo "<input type='hidden' name='{$key}[$subKey]' value='" . htmlspecialchars($subValue) . "'>";
-                        }
-                    } else {
-                        echo "<input type='hidden' name='$key' value='" . htmlspecialchars($value) . "'>";
-                    }
-                }
-                ?>
-                <button type="submit" class="btn btn-success mt-3">Pay Now</button>
-            </form>
         </div>
     </div>
 
