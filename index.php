@@ -6,23 +6,52 @@ include('includes/header.php'); // Include your header file with necessary PHP l
 $flightOffers = [
     [
         'id' => 1,
-        'destination' => 'New York',
-        'price' => 250,
-        'promo_code' => 'FLYNY2024'
+        'destination' => 'Tata Neu HDFC Bank Credit Cards',
+        'description' => 'Book tickets with Tata Neu HDFC credit card and get NeuCoins.',
+        'image' => 'image1.jpg'
     ],
     [
         'id' => 2,
-        'destination' => 'Los Angeles',
-        'price' => 300,
-        'promo_code' => 'FLYLA2024'
+        'destination' => 'Bajaj Pay UPI',
+        'description' => 'Book your Air India flight tickets with Bajaj Pay UPI and receive 5% value back, up to INR 750.',
+        'image' => 'image2.jpg'
     ],
     [
         'id' => 3,
-        'destination' => 'Chicago',
-        'price' => 280,
-        'promo_code' => 'FLYCHI2024'
+        'destination' => 'Children below 15',
+        'description' => 'Get 25% off on flight booking tickets when you book with Airline India.',
+        'image' => 'image3.jpg'
     ],
-    // Add more offers as needed
+    [
+        'id' => 6,
+        'destination' => 'Instant Discount Using ICICI Bank Cards',
+        'description' => 'Book your flight tickets with ICICI Bank Credit or Debit Cards and get up to INR 2000 off.',
+        'image' => 'image4.jpg'
+    ],
+];
+
+// Example array of airline news (simplified)
+$airlineNews = [
+    [
+        'image' => 'image1.jpg',
+        'alt' => 'New Look and Modern Architecture',
+        'headline' => 'Low Cost Airline unveils a new look and modern architecture of its website.',
+    ],
+    [
+        'image' => 'image2.jpg',
+        'alt' => 'Direct Flights Announcement',
+        'headline' => 'Low Cost Airline announces new direct flights between Mumbai and Vijayawada.',
+    ],
+    [
+        'image' => 'image3.jpg',
+        'alt' => 'New Route Announcement',
+        'headline' => 'Low Cost Airline introduces direct flights between Bengaluru and Mumbai.',
+    ],
+    [
+        'image' => 'image4.jpg',
+        'alt' => 'Additional Flights Announcement',
+        'headline' => 'Low Cost Airline adds more flights between Jaipur and Mumbai to meet passenger demand.',
+    ],
 ];
 ?>
 
@@ -105,8 +134,14 @@ $flightOffers = [
         </div>
 
         <div class="news-section mt-4">
-            <h2>Airline News Section</h2>
+            <h2>Low Cost Airline News</h2>
             <div class="news-container d-flex justify-content-between">
+                <?php foreach ($airlineNews as $news) : ?>
+                    <div class="news-item">
+                        <img src="<?php echo $news['image']; ?>" alt="<?php echo $news['alt']; ?>">
+                        <p><?php echo $news['headline']; ?></p>
+                    </div>
+                <?php endforeach; ?>
                 <div class="news-item">
                     <img src="image1.jpg" alt="New Look and Modern Architecture" class="img-fluid">
                     <p>Low Cost Airline is to unveil a new look and modern architecture of its website.</p>
@@ -134,6 +169,20 @@ $flightOffers = [
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-body">
+                                <?php if (isset($offer['image'])) : ?>
+                                    <img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['destination']; ?>" class="img-fluid mb-3">
+                                <?php endif; ?>
+                                <h5 class="card-title"><?php echo $offer['destination']; ?></h5>
+                                <?php if (isset($offer['price'])) : ?>
+                                    <p class="card-text">Price: $<?php echo $offer['price']; ?></p>
+                                <?php endif; ?>
+                                <?php if (isset($offer['promo_code'])) : ?>
+                                    <p class="card-text">Promo Code: <?php echo $offer['promo_code']; ?></p>
+                                <?php endif; ?>
+                                <?php if (isset($offer['description'])) : ?>
+                                    <p class="card-text"><?php echo $offer['description']; ?></p>
+                                <?php endif; ?>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                                 <h5 class="card-title"><?php echo htmlspecialchars($offer['destination']); ?></h5>
                                 <p class="card-text">Price: $<?php echo htmlspecialchars($offer['price']); ?></p>
                                 <p class="card-text">Promo Code: <?php echo htmlspecialchars($offer['promo_code']); ?></p>
