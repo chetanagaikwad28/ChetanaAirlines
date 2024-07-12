@@ -182,11 +182,6 @@ $airlineNews = [
                                 <?php if (isset($offer['description'])) : ?>
                                     <p class="card-text"><?php echo $offer['description']; ?></p>
                                 <?php endif; ?>
-                                <a href="#" class="btn btn-primary">Book Now</a>
-                                <h5 class="card-title"><?php echo htmlspecialchars($offer['destination']); ?></h5>
-                                <p class="card-text">Price: $<?php echo htmlspecialchars($offer['price']); ?></p>
-                                <p class="card-text">Promo Code: <?php echo htmlspecialchars($offer['promo_code']); ?></p>
-                                <!-- <a href="#" class="btn btn-primary">Book Now</a> -->
                             </div>
                         </div>
                     </div>
