@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
-            background: url('https://unsplash.com/photos/eICUFSeirc0/download?force=true&w=1920') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             margin: 0;
@@ -17,10 +16,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #e0f7fa; /* Light blue background */
         }
 
         .form-container {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -31,10 +31,9 @@
 
         .form-group input,
         .form-group select {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #007bff;
             border-radius: 10px;
-            box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(255, 255, 255, 0.5);
             padding: 10px;
             width: 100%;
             margin-top: 5px;
@@ -43,25 +42,25 @@
 
         .form-group label {
             font-weight: bold;
+            color: #007bff;
         }
 
         .btn-primary {
-            background: rgba(255, 255, 255, 0.2);
+            background-color: #007bff;
             border: none;
             border-radius: 10px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(255, 255, 255, 0.5);
             padding: 10px 20px;
-            color: #333;
+            color: #fff;
             font-weight: bold;
             transition: background 0.3s ease;
         }
 
         .btn-primary:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background-color: #0056b3;
         }
 
         .special-assistance a {
-            color: #1e3c72;
+            color: #007bff;
             font-size: 0.9em;
             text-decoration: none;
         }
@@ -69,33 +68,47 @@
         .special-assistance a:hover {
             text-decoration: underline;
         }
+
+        .passenger-form {
+            border: 1px solid #007bff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .passenger-form h5 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .header-bar {
+            background-color: #0056b3;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="form-container">
-            <h4 class="text-center">Flight Booking Form</h4>
+            <div class="header-bar">
+                <h4>Flight Booking Form</h4>
+            </div>
             <form id="booking-form" method="POST" action="payment.php">
                 <div id="passenger-fields"></div>
                 <!-- Hidden input field for flight_id -->
                 <input type="hidden" name="flight_id" value="<?php echo htmlspecialchars($_POST['flight_id']); ?>">
 
-                <div class="form-group mt-3">
-                    <label for="paymentMethod">Payment Method</label>
-                    <select class="form-select" id="paymentMethod" name="paymentMethod" required>
-                        <option value="">Select Payment Method</option>
-                        <option value="credit_card">Credit Card</option>
-                        <option value="debit_card">Debit Card</option>
-                        <option value="paypal">PayPal</option>
-                    </select>
-                </div>
                 <button type="submit" class="btn btn-primary w-100 mt-3">Proceed to Payment</button>
             </form>
         </div>
     </div>
 
-    <?php echo json_encode($_POST['flight_id']); ?>;
     <script>
         // Retrieve the flight ID and selected seats from PHP
         const flightId = <?php echo json_encode($_POST['flight_id']); ?>;
@@ -135,7 +148,7 @@
                     <div class="form-group row align-items-center mt-3">
                         <div class="col-md-4">
                             <label for="email${passengerCount}" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email${passengerCount}" name="email${passengerCount}" placeholder="Enter email" required>
+                            <input type="email" class="form-control" id="email${passengerCount}" name="email${passengerCount}" placeholder="Enter email">
                         </div>
                         <div class="col-md-4">
                             <label for="phone${passengerCount}" class="form-label">Phone Number</label>
