@@ -17,7 +17,7 @@
         {
             $current_time = date('Y-m-d H:i:s');
             $sql = "UPDATE `seat` SET `Status` = 'free', `LockUntil` = NULL WHERE `Status` = 'locked' AND `LockUntil` <= NOW()";
-            echo $current_time;
+            // echo $current_time;
             $conn->query($sql);
         }
 

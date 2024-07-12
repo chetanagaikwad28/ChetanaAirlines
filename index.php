@@ -102,25 +102,24 @@ $flightOffers = [
             </form>
         </div>
 
-        <!-- IndiGo News Section -->
         <div class="news-section mt-4">
-            <h2>IndiGo News</h2>
+            <h2>Airline News Section</h2>
             <div class="news-container d-flex justify-content-between">
                 <div class="news-item">
                     <img src="image1.jpg" alt="New Look and Modern Architecture">
-                    <p>IndiGo to unveil a new look and modern architecture of its website and mobile app</p>
+                    <p>Low Cost Airline is to unveil a new look and modern architecture of its website.</p>
                 </div>
                 <div class="news-item">
                     <img src="image2.jpg" alt="Mumbai and Vijayawada">
-                    <p>IndiGo announces direct flights between Mumbai and Vijayawada</p>
+                    <p>Low Cost Airline announces direct flights between Mumbai and Vijayawada</p>
                 </div>
                 <div class="news-item">
-                    <img src="image3.jpg" alt="Bengaluru and Abu Dhabi">
-                    <p>IndiGo announces direct flights between Bengaluru and Abu Dhabi</p>
+                    <img src="image3.jpg" alt="Bengaluru and Mumbai">
+                    <p> Low Cost Airline announces direct flights between Bengaluru and  Mumbai</p>
                 </div>
                 <div class="news-item">
-                    <img src="image4.jpg" alt="Jeddah and Mumbai">
-                    <p>IndiGo announces additional flights between Jeddah and Mumbai</p>
+                    <img src="image4.jpg" alt="Jaipur and Mumbai">
+                    <p>Low Cost Airline announces additional flights between Jaipur and Mumbai</p>
                 </div>
             </div>
         </div>
@@ -153,19 +152,8 @@ $flightOffers = [
                     <h5>Get to Know Us</h5>
                     <ul class="list-unstyled">
                         <li>About us</li>
-                        <li>IndiGo Green - ESG report</li>
-                        <li>6E Embrace - Diversity Equity & Inclusion</li>
-                        <li>IndiGoReach - Our CSR initiatives</li>
-                        <li>Hello 6E Magazine</li>
-                        <li>Board of Directors</li>
                         <li>Leadership Team</li>
                         <li>Investor Relations</li>
-                        <li>Press Releases</li>
-                        <li>InterGlobe Enterprises</li>
-                        <li>RPWD - Equal Opportunity Policy</li>
-                        <li>Transgender Persons Policy</li>
-                        <li>HIV/AIDS workplace policy</li>
-                        <li>Our Awards</li>
                         <li>Seat/Aircraft information</li>
                     </ul>
                 </div>
@@ -173,10 +161,8 @@ $flightOffers = [
                     <h5>Services</h5>
                     <ul class="list-unstyled">
                         <li>Plan B</li>
-                        <li>Special/Disability Assistance</li>
                         <li>Medical Assistance</li>
                         <li>Seat Select</li>
-                        <li>6E Eats</li>
                         <li>Add-ons & Services</li>
                         <li>Baggage</li>
                         <li>Refund Claim</li>
@@ -188,39 +174,18 @@ $flightOffers = [
                     <h5>Quick links</h5>
                     <ul class="list-unstyled">
                         <li>Offers</li>
-                        <li>Careers</li>
                         <li>Advertise with us</li>
                         <li>Sitemap</li>
                         <li>Destinations</li>
                         <li>Blogs</li>
                         <li>Terms and Conditions</li>
                         <li>Conditions of Carriage</li>
-                        <li>Privacy Policy</li>
-                        <li>Disclaimer</li>
-                        <li>International Travel Tips</li>
-                        <li>Web check-in Advisory</li>
-                        <li>Tariff Sheet</li>
-                        <li>Purchase Requirement</li>
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h5>Social</h5>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
-                    <h5>Download</h5>
-                    <div>
-                        <a href="#"><img src="google-play-badge.png" alt="Get it on Google Play" class="img-fluid"></a>
-                        <a href="#"><img src="app-store-badge.png" alt="Download on the App Store" class="img-fluid"></a>
-                    </div>
                     <h5>Our Awards</h5>
                     <ul class="list-unstyled">
-                        <li><img src="award1.png" alt="Best Low Cost Airline - Asia" class="img-fluid"></li>
-                        <li><img src="award2.png" alt="Best Low Cost Airline - Central Asia" class="img-fluid"></li>
+                        <li><img src="award1.png" alt="Best Low Cost Airline - India" class="img-fluid"></li>
                         <li><img src="award3.png" alt="Passenger Choice Award" class="img-fluid"></li>
                     </ul>
                 </div>
