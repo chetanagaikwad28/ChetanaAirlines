@@ -3,11 +3,23 @@ include('includes/db.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    date_default_timezone_set('Asia/Kolkata');
+    // Function to release seats that have been locked for more than 10 minutes
+    function release_locked_seats($conn)
+    {
+        $current_time = date('Y-m-d H:i:s');
+        $sql = "UPDATE `seat` SET `Status` = 'free', `LockUntil` = NULL WHERE `Status` = 'locked' AND `LockUntil` <= NOW()";
+        // echo $current_time;
+        $conn->query($sql);
+    }
+
+    // Call the function to release locked seats
+    release_locked_seats($conn);
+
     // Sanitize inputs to prevent SQL injection
     $flight_id = intval($_POST['flight_id']);
     $seat_number = $conn->real_escape_string($_POST['seat_number']);
-
-
 
     // Check if the seat is already locked or booked
     $sql = "SELECT * FROM seat WHERE SeatNumber = '$seat_number' AND FlightID = '$flight_id' AND Status = 'free'";

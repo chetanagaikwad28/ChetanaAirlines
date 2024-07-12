@@ -52,7 +52,7 @@ body {
     color: #000000;
 }
 
-.seat:hover {
+.seat.free:hover {
     transform: scale(1.2);
     z-index: 10;
 }
@@ -150,7 +150,7 @@ body {
 
     }
 
-    .seat:hover .seat-number {
+    .seat.free:hover .seat-number {
         transform: rotate(0deg);
         /* Rotate on hover */
     }
@@ -172,7 +172,7 @@ body {
         height: calc(100% / 3);
     }
 
-    .seat:hover .seat-number {
+    .seat.free:hover .seat-number {
         transform: rotate(0deg);
         /* Rotate on hover */
     }
@@ -211,12 +211,7 @@ body {
     background-color: #90a4ae;
 }
 
-.seat.fire-exit {
-    /* background-color: #ffeb3b; */
-    /* Yellow background for fire exit seats */
-    border: 6px solid #f44336;
-    /* Red border for fire exit seats */
-}
+
 
 /* Ensure lock button is hidden by default */
 .lock-button {
@@ -244,4 +239,49 @@ body {
 .seat:hover .lock-button {
     display: block;
     visibility: visible;
+}
+
+.seat.fire-exit {
+    border: 6px solid rgb(244, 67, 54);
+    /* Red border for fire exit seats */
+}
+
+.selected {
+    border: 2px solid #0000FF;
+    /* Blue border to indicate selection */
+    background-color: #ADD8E6;
+    /* Light blue background for selected seats */
+    padding: 5px;
+    /* Add padding to make the border more visible */
+}
+
+/* Override .fire-exit border when seat is selected */
+.seat.fire-exit.selected {
+    border: 2px solid #0000FF;
+    /* Blue border for selected fire exit seats */
+    background-color: rgb(244, 67, 54);
+    /* Light blue background for selected fire exit seats */
+    padding: 5px;
+    /* Add padding to make the border more visible */
+}
+
+#book-selected-seats {
+    display: block;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+#book-selected-seats:hover {
+    background-color: #0056b3;
 }

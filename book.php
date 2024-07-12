@@ -15,7 +15,7 @@ $is_admin = $_SESSION['is_admin'];
 function release_locked_seats($conn)
 {
     $current_time = date('Y-m-d H:i:s');
-    $sql = "UPDATE seat SET Status = 'free', LockUntil = NULL WHERE Status = 'locked' AND LockUntil < '$current_time'";
+    $sql = "UPDATE `seat` SET `Status` = 'free', `LockUntil` = NULL WHERE `Status` = 'locked' AND `LockUntil` <= NOW()";
     $conn->query($sql);
 }
 

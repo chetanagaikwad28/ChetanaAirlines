@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2024 at 09:15 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jul 12, 2024 at 09:35 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,16 +49,19 @@ CREATE TABLE `flight` (
   `DepartureTime` datetime NOT NULL,
   `ArrivalTime` datetime NOT NULL,
   `DepartureLocation` varchar(255) NOT NULL,
-  `ArrivalLocation` varchar(255) NOT NULL
+  `ArrivalLocation` varchar(255) NOT NULL,
+  `fare` int(6) NOT NULL,
+  `Duration Time` int(11) NOT NULL,
+  `CabinClass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `flight`
 --
 
-INSERT INTO `flight` (`FlightID`, `PlaneID`, `FlightNumber`, `DepartureTime`, `ArrivalTime`, `DepartureLocation`, `ArrivalLocation`) VALUES
-(1, 1, 'FL123', '2024-07-10 08:00:00', '2024-07-10 10:00:00', 'New York', 'Los Angeles'),
-(2, 2, 'FL456', '2024-07-11 09:00:00', '2024-07-11 11:00:00', 'Chicago', 'Miami');
+INSERT INTO `flight` (`FlightID`, `PlaneID`, `FlightNumber`, `DepartureTime`, `ArrivalTime`, `DepartureLocation`, `ArrivalLocation`, `fare`, `Duration Time`, `CabinClass`) VALUES
+(1, 1, 'FL123', '2024-07-10 08:00:00', '2024-07-10 10:00:00', 'New York', 'Los Angeles', 0, 0, 0),
+(2, 2, 'FL456', '2024-07-11 09:00:00', '2024-07-11 11:00:00', 'Chicago', 'Miami', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -120,7 +123,7 @@ CREATE TABLE `seat` (
 
 INSERT INTO `seat` (`SeatID`, `FlightID`, `SeatNumber`, `Status`, `IsFireExit`, `LockUntil`) VALUES
 (134, 1, '1A', 'locked', '0', '2024-07-12 00:17:09'),
-(135, 1, '1B', 'free', '0', NULL),
+(135, 1, '1B', 'locked', '0', '2024-07-12 01:07:05'),
 (136, 1, '1C', 'free', '0', NULL),
 (137, 1, '1D', 'free', '0', NULL),
 (138, 1, '1E', 'free', '0', NULL),
@@ -201,7 +204,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UserID`, `Name`, `Email`, `Password`, `Age`, `is_admin`) VALUES
 (1, 'Admin', 'admin@example.com', '81dc9bdb52d04dc20036dbd8313ed055', 30, 1),
-(3, 'Pankaj Samudree', 'cheturawat@gmail.com', '$2y$10$n7Tt2BfakSqLhCynfVFJa.Ef2xKOHEpc.u53p9LH1SIKdVmyCQFuG', 41, 0);
+(3, 'Pankaj Samudree', 'cheturawat@gmail.com', '$2y$10$n7Tt2BfakSqLhCynfVFJa.Ef2xKOHEpc.u53p9LH1SIKdVmyCQFuG', 41, 0),
+(4, 'Chetana Gaikwad', 'chetanagaikwad28@gmail.com', '$2y$10$4jZ4f..k7ckYa7DEGpmd1uhFoJIQa6zF9RSbACJcVBtHvSN9iscHO', 21, 0);
 
 --
 -- Indexes for dumped tables
@@ -289,7 +293,7 @@ ALTER TABLE `seat`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
