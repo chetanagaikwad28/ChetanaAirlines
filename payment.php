@@ -16,7 +16,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #e0f7fa; /* Light blue background */
+            background-color: #e0f7fa;
+            /* Light blue background */
         }
 
         .container {
@@ -142,19 +143,19 @@
         ?>
 
         <div class="payment-option">
-            <img src="upi.png" alt="UPI">
+            <img src="images/upi-icon.png" alt="UPI">
             <label for="upi">UPI</label>
         </div>
         <div class="payment-option">
-            <img src="credit-card.png" alt="Credit Card">
+            <img src="images/debit-card-credit.png" alt="Credit Card">
             <label for="credit-card">Credit/Debit Card</label>
         </div>
         <div class="payment-option">
-            <img src="gift-voucher.png" alt="Gift Voucher">
+            <img src="images/gift voucher.png" alt="Gift Voucher">
             <label for="gift-voucher">Gift Voucher</label>
         </div>
         <div class="payment-option">
-            <img src="net-banking.png" alt="Net Banking">
+            <img src="images/Net Banking.png" alt="Net Banking">
             <label for="net-banking">Net Banking</label>
         </div>
 
