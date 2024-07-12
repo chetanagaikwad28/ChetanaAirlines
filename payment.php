@@ -113,7 +113,7 @@
                         // Apply discount for child passengers
                         $discount = 0;
                         if ($ageGroup === 'child') {
-                            $discount = 0.15; // 15% discount for child passengers
+                            $discount = 0.25; // 15% discount for child passengers
                         }
 
                         // Calculate passenger fare with discount
@@ -148,24 +148,7 @@
         $conn->close();
         ?>
 
-<<<<<<< HEAD
-        <div class="payment-option">
-            <img src="images/upi-icon.png" alt="UPI">
-            <label for="upi">UPI</label>
-        </div>
-        <div class="payment-option">
-            <img src="images/debit-card-credit.png" alt="Credit Card">
-            <label for="credit-card">Credit/Debit Card</label>
-        </div>
-        <div class="payment-option">
-            <img src="images/gift voucher.png" alt="Gift Voucher">
-            <label for="gift-voucher">Gift Voucher</label>
-        </div>
-        <div class="payment-option">
-            <img src="images/Net Banking.png" alt="Net Banking">
-            <label for="net-banking">Net Banking</label>
-        </div>
-=======
+
         <form action="finalize_payment.php" method="post">
             <!-- Payment Options -->
             <div class="payment-option">
@@ -206,7 +189,6 @@
                 <button type="submit" class="btn btn-success mt-3">Pay Now</button>
             </div>
         </form>
->>>>>>> bb114eaace4d45f191f0958620feadb4fa780f61
 
         <div class="text-center">
             <a href="index.php" class="btn btn-primary mt-3">Back to Home</a>
