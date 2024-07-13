@@ -69,8 +69,7 @@ $airlineNews = [
 <body>
     <main class="container mt-4">
         <div class="search-section bg-white p-4 rounded shadow-sm">
-            <form id="booking-form" method="POST" action="search.php"> <!-- Assuming 'search.php' is your PHP processing file -->
-                <!-- Your existing search form -->
+            <form id="booking-form" method="POST" action="flights.php"> <!-- Changed to 'flights.php' -->
                 <div class="row align-items-center">
                     <div class="col-auto">
                         <label class="form-check-label me-3"><input type="radio" name="trip" value="one-way" checked> One Way</label>
@@ -86,14 +85,14 @@ $airlineNews = [
                         <select id="from" name="from" class="form-select" required>
                             <option value="" disabled selected>Choose...</option>
                             <?php
-                            include('includes/db.php');
+                            include('includes/db.php'); // Include your database connection file
 
-                            $sql = "SELECT ArrivalLocation FROM flight";
+                            $sql = "SELECT DISTINCT DepartureLocation FROM flight";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . $row['ArrivalLocation'] . "'>" . $row['ArrivalLocation'] . "</option>";
+                                    echo "<option value='" . $row['DepartureLocation'] . "'>" . $row['DepartureLocation'] . "</option>";
                                 }
                             } else {
                                 echo "<option value='' disabled>No locations found</option>";
@@ -106,9 +105,7 @@ $airlineNews = [
                         <select id="to" name="to" class="form-select" required>
                             <option value="" disabled selected>Choose...</option>
                             <?php
-                            include('includes/db.php');
-
-                            $sql = "SELECT ArrivalLocation FROM flight";
+                            $sql = "SELECT DISTINCT ArrivalLocation FROM flight";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
@@ -123,9 +120,15 @@ $airlineNews = [
                     </div>
                 </div>
                 <div class="row mt-3">
+
+
                     <div class="col">
-                        <input type="date" name="departure_date" class="form-control" required>
+                        <label for="departure_date">Departure Date</label>
+                        <input type="date" id="departure_date" name="departure_date" class="form-control" required>
                     </div>
+
+
+
                     <div class="col">
                         <button type="button" class="btn btn-outline-primary w-100">Add return trip</button>
                     </div>
@@ -147,6 +150,7 @@ $airlineNews = [
                     </div>
                 </div>
             </form>
+
         </div>
 
         <div class="news-section mt-4">
@@ -173,12 +177,6 @@ $airlineNews = [
                                     <img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['destination']; ?>" class="img-fluid mb-3">
                                 <?php endif; ?>
                                 <h5 class="card-title"><?php echo $offer['destination']; ?></h5>
-                                <?php if (isset($offer['price'])) : ?>
-                                    <p class="card-text">Price: $<?php echo $offer['price']; ?></p>
-                                <?php endif; ?>
-                                <?php if (isset($offer['promo_code'])) : ?>
-                                    <p class="card-text">Promo Code: <?php echo $offer['promo_code']; ?></p>
-                                <?php endif; ?>
                                 <?php if (isset($offer['description'])) : ?>
                                     <p class="card-text"><?php echo $offer['description']; ?></p>
                                 <?php endif; ?>
@@ -241,7 +239,7 @@ $airlineNews = [
 
     <!-- JavaScript and Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="scripts.js"></script>
+    <!-- <script src="scripts.js"></script> -->
 </body>
 
 </html>
