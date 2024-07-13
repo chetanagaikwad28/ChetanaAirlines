@@ -8,7 +8,7 @@
     <style>
         body {
             background-color: #f0f8ff; /* Light blue background */
-            color: #0000cd; /* Navy blue text */
+            color: #000; /* Black text */
             padding: 20px;
         }
         .container {
@@ -18,7 +18,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h2 {
-            color: #0000cd; /* Navy blue heading */
+            color: #000; /* Black heading */
         }
         table {
             width: 100%;
@@ -36,6 +36,13 @@
         tr:nth-child(even) {
             background-color: #f2f2f2; /* Light grey background for even rows */
         }
+        .section-title {
+            background-color: #0000cd; /* Dark blue background */
+            color: #fff; /* White text */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -43,7 +50,7 @@
         <h2>Fees and Charges</h2>
         <p>Airline India offers various set of services (unbundled service as per Air Transport Circular 01 of 2024 issued by Directorate General of Civil Aviation (DGCA), as amended from time to time. Such services are (a) are optional in nature & are provided for the convenience of our Customer/passengers and (b) these services can be availed by payment of additional charges. It is clarified that Booking of the ticket can be made without opting /availing these unbundled services.</p>
         
-        <h3>1. Seat Select – Seating Plan</h3>
+        <h3 class="section-title">1. Seat Select – Seating Plan</h3>
         <h4>a. Aircraft1: 60 seater</h4>
         <table>
             <thead>
@@ -102,7 +109,7 @@
             </tbody>
         </table>
         
-        <h3>2. Changes and Cancellation</h3>
+        <h3 class="section-title">2. Changes and Cancellation</h3>
         <table>
             <thead>
                 <tr>

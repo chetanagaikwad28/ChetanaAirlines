@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0+TA4q4euS7G1tL9GvTjHm9QzjszBtZQ9s0P86UcPPUGm0rPPN4RshKtANwCk2I" crossorigin="anonymous">
+    <style>
+        .logo img {
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -65,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a class="nav-link dropdown-toggle text-white" href="fees_and_charges.php" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Info</a>
                     <ul class="dropdown-menu" aria-labelledby="infoDropdown">
                         <li><a class="dropdown-item" href="fees_and_charges.php">Fees and Charges</a></li>
-                        <li><a class="dropdown-item" href="#">FAQs</a></li>
-                        <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                        <li><a class="dropdown-item" href="faqs.php">FAQs</a></li>
+                        <li><a class="dropdown-item" href="contact_us.php">Contact Us</a></li>
                     </ul>
                 </li>
                 <?php if ($is_logged_in) : ?>
@@ -214,5 +229,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
+<!-- jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzV4Scd1NxkHl9pbMA1p6iYkMfH7/E3yG7arPbEe9tz3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+27mtL0EaBw2rZ2x0Gctczf4FuvHg" crossorigin="anonymous"></script>
+
+</body>
+</html>
