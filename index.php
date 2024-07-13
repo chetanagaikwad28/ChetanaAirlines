@@ -30,7 +30,6 @@ $flightOffers = [
     ],
 ];
 
-// Example array of airline news (simplified)
 $airlineNews = [
     [
         'image' => 'image1.jpg',
@@ -142,22 +141,6 @@ $airlineNews = [
                         <p><?php echo $news['headline']; ?></p>
                     </div>
                 <?php endforeach; ?>
-                <div class="news-item">
-                    <img src="image1.jpg" alt="New Look and Modern Architecture" class="img-fluid">
-                    <p>Low Cost Airline is to unveil a new look and modern architecture of its website.</p>
-                </div>
-                <div class="news-item">
-                    <img src="image2.jpg" alt="Mumbai and Vijayawada" class="img-fluid">
-                    <p>Low Cost Airline announces direct flights between Mumbai and Vijayawada</p>
-                </div>
-                <div class="news-item">
-                    <img src="image3.jpg" alt="Bengaluru and Mumbai" class="img-fluid">
-                    <p> Low Cost Airline announces direct flights between Bengaluru and Mumbai</p>
-                </div>
-                <div class="news-item">
-                    <img src="image4.jpg" alt="Jaipur and Mumbai" class="img-fluid">
-                    <p>Low Cost Airline announces additional flights between Jaipur and Mumbai</p>
-                </div>
             </div>
         </div>
 
