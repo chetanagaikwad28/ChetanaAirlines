@@ -72,7 +72,12 @@ include('includes/header.php');
                                     </form>
                                 </td>
                             <?php else : ?>
-                                <td><a href="book.php?flight_id=<?php echo $row['FlightID']; ?>" class="btn btn-success btn-sm">Book</a></td>
+                                <td>
+                                    <form method="POST" action="book.php">
+                                        <input type="hidden" name="flight_id" value="<?php echo $row['FlightID']; ?>">
+                                        <button type="submit" class="btn btn-success btn-sm">Book</button>
+                                    </form>
+                                </td>
                             <?php endif; ?>
                         </tr>
                     <?php endwhile; ?>
@@ -119,7 +124,12 @@ include('includes/header.php');
                                     </form>
                                 </td>
                             <?php else : ?>
-                                <td><a href="book.php?flight_id=<?php echo $row['FlightID']; ?>" class="btn btn-success btn-sm">Book</a></td>
+                                <td>
+                                    <form method="POST" action="seat/seat.php">
+                                        <input type="hidden" name="flight_id" value="<?php echo $row['FlightID']; ?>">
+                                        <button type="submit" class="btn btn-success btn-sm">Book</button>
+                                    </form>
+                                </td>
                             <?php endif; ?>
                         </tr>
                     <?php endwhile; ?>

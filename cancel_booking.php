@@ -40,18 +40,41 @@ function getUserBookings($conn, $userID)
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['booking_id'])) {
     $bookingID = $_POST['booking_id'];
 
-    // Query to cancel the booking
-    $cancelBookingQuery = "UPDATE booking SET status = 'cancelled' WHERE BookingID = ?";
-    $stmt = $conn->prepare($cancelBookingQuery);
+    // Query to get the departure time for the booking
+    $getDepartureTimeQuery = "SELECT f.DepartureTime
+                              FROM booking b
+                              INNER JOIN flight f ON b.FlightID = f.FlightID
+                              WHERE b.BookingID = ?";
+    $stmt = $conn->prepare($getDepartureTimeQuery);
     $stmt->bind_param("i", $bookingID);
-
-    if ($stmt->execute()) {
-        $_SESSION['cancel_success'] = "Booking cancelled successfully.";
-    } else {
-        $_SESSION['cancel_error'] = "Error cancelling booking. Please try again.";
-    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $departureTime = $result->fetch_assoc()['DepartureTime'];
 
     $stmt->close();
+
+    // Calculate the time difference between the current time and the departure time
+    $currentTime = new DateTime();
+    $departureDateTime = new DateTime($departureTime);
+    $interval = $currentTime->diff($departureDateTime);
+
+    // Check if the interval is at least 72 hours
+    if ($interval->invert == 0 && $interval->days * 24 + $interval->h >= 72) {
+        // Query to cancel the booking
+        $cancelBookingQuery = "UPDATE booking SET status = 'cancelled' WHERE BookingID = ?";
+        $stmt = $conn->prepare($cancelBookingQuery);
+        $stmt->bind_param("i", $bookingID);
+
+        if ($stmt->execute()) {
+            $_SESSION['cancel_success'] = "Booking cancelled successfully.";
+        } else {
+            $_SESSION['cancel_error'] = "Error cancelling booking. Please try again.";
+        }
+
+        $stmt->close();
+    } else {
+        $_SESSION['cancel_error'] = "Booking cannot be cancelled less than 72 hours before departure.";
+    }
 
     // Redirect to avoid resubmission of form
     header("Location: cancel_booking.php");
@@ -73,6 +96,22 @@ include('includes/header.php');
     <?php if (empty($bookings)) : ?>
         <p class="text-muted">You have no bookings to display.</p>
     <?php else : ?>
+        <?php if (isset($_SESSION['cancel_success'])) : ?>
+            <div class="alert alert-success">
+                <?php
+                echo $_SESSION['cancel_success'];
+                unset($_SESSION['cancel_success']);
+                ?>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['cancel_error'])) : ?>
+            <div class="alert alert-danger">
+                <?php
+                echo $_SESSION['cancel_error'];
+                unset($_SESSION['cancel_error']);
+                ?>
+            </div>
+        <?php endif; ?>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -115,3 +154,7 @@ include('includes/header.php');
     <?php endif; ?>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

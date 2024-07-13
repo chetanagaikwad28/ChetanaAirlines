@@ -24,7 +24,7 @@
         // Call the function to release locked seats
         release_locked_seats($conn);
 
-        $flightId = isset($_POST['flight_id']) ? intval($_POST['flight_id']) : 1; // Default to 1 if not set
+        $flightId = isset($_POST['flight_id']) ? intval($_POST['flight_id']) : null; // Default to 1 if not set
         $sql = "SELECT * FROM seat WHERE FlightID = $flightId ORDER BY SeatID";
         $result = $conn->query($sql);
 
@@ -60,7 +60,7 @@
                 $rowCount++;
             }
             echo '</div>';
-            echo '<button id="book-selected-seats" >Book Selected Seats</button>';
+            echo '<button id="book-selected-seats">Book Selected Seats</button>';
         } else {
             echo "0 results";
         }
@@ -83,8 +83,12 @@
                             selectedSeats.splice(index, 1);
                         }
                     } else {
-                        this.classList.add('selected');
-                        selectedSeats.push(seatNumber);
+                        if (selectedSeats.length < 6) {
+                            this.classList.add('selected');
+                            selectedSeats.push(seatNumber);
+                        } else {
+                            alert('You can only select up to 6 seats.');
+                        }
                     }
                 });
             });
