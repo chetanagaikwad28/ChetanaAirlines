@@ -85,24 +85,40 @@ $airlineNews = [
                         <label for="from">From</label>
                         <select id="from" name="from" class="form-select" required>
                             <option value="" disabled selected>Choose...</option>
-                            <option value="New York">New York</option>
-                            <option value="Los Angeles">Los Angeles</option>
-                            <option value="Chicago">Chicago</option>
-                            <option value="Houston">Houston</option>
-                            <option value="Miami">Miami</option>
-                            <!-- Add more options as needed -->
+                            <?php
+                            include('includes/db.php');
+
+                            $sql = "SELECT ArrivalLocation FROM flight";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='" . $row['ArrivalLocation'] . "'>" . $row['ArrivalLocation'] . "</option>";
+                                }
+                            } else {
+                                echo "<option value='' disabled>No locations found</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col">
                         <label for="to">To</label>
                         <select id="to" name="to" class="form-select" required>
                             <option value="" disabled selected>Choose...</option>
-                            <option value="New York">New York</option>
-                            <option value="Los Angeles">Los Angeles</option>
-                            <option value="Chicago">Chicago</option>
-                            <option value="Houston">Houston</option>
-                            <option value="Miami">Miami</option>
-                            <!-- Add more options as needed -->
+                            <?php
+                            include('includes/db.php');
+
+                            $sql = "SELECT ArrivalLocation FROM flight";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='" . $row['ArrivalLocation'] . "'>" . $row['ArrivalLocation'] . "</option>";
+                                }
+                            } else {
+                                echo "<option value='' disabled>No locations found</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>
