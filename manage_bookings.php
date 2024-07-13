@@ -1,10 +1,15 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <?php
 include('includes/db.php');
 session_start();
 
+include('includes/header.php');
+
+
 // Check if user is logged in and retrieve user ID from session
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    // header("Location: index.php");
     exit();
 }
 
@@ -24,7 +29,6 @@ $result = $stmt->get_result();
 
 // include('includes/header.php'); // Include your header file
 ?>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <main>
     <div class="container mt-5">
@@ -61,6 +65,6 @@ $result = $stmt->get_result();
         </div>
     </div>
 </main>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- <?php include('includes/footer.php'); // Include your footer file  -->
         ?>
