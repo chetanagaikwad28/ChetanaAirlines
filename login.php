@@ -5,6 +5,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $login_as = $_POST['login_as']; // 'customer' or 'admin'
 
     $sql = "SELECT * FROM user WHERE Email = ?";
     $stmt = $conn->prepare($sql);
@@ -16,31 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['Password'])) {
             $_SESSION['user_id'] = $user['UserID'];
-            $_SESSION['is_admin'] = $user['is_admin'];
-            header("Location: index.php");
+
+            if ($login_as === 'admin' && $user['is_admin']) {
+                $_SESSION['is_admin'] = true;
+                header("Location: index.php");
+            } else {
+                $_SESSION['is_admin'] = false;
+                header("Location: index.php");
+            }
             exit();
         } else {
-            echo "Invalid password.";
+            $_SESSION['login_error'] = "Invalid password.";
         }
     } else {
-        echo "No user found with that email.";
+        $_SESSION['login_error'] = "No user found with that email.";
     }
 }
 
-include('includes/header.php');
-?>
-
-<main>
-    <h2>Login</h2>
-    <form method="POST" action="">
-        <label>Email:</label>
-        <input type="email" name="email" required><br>
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
-</main>
-
-</body>
-
-</html>
+header("Location: index.php");
+exit();

@@ -3,40 +3,24 @@ include('includes/db.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
+    $name = ''; // You can add name field in the form if needed.
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $age = $_POST['age'];
+    $age = ''; // You can add age field in the form if needed.
     $is_admin = isset($_POST['is_admin']) ? 1 : 0;
 
-    $sql = "INSERT INTO user (Name, Email, Password, Age, is_admin) VALUES ('$name', '$email', '$password', '$age', '$is_admin')";
-    if ($conn->query($sql) === TRUE) {
+    // Validate input if required
+
+    $sql = "INSERT INTO user (Name, Email, Password, Age, is_admin) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssi", $name, $email, $password, $age, $is_admin);
+
+    if ($stmt->execute()) {
         header("Location: login.php");
+        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $_SESSION['register_error'] = "Registration failed. Please try again later.";
+        header("Location: index.php"); // Redirect to appropriate page
+        exit();
     }
 }
-
-include('includes/header.php');
-?>
-
-<main>
-    <h2>Register</h2>
-    <form method="POST" action="">
-        <label>Name:</label>
-        <input type="text" name="name" required><br>
-        <label>Email:</label>
-        <input type="email" name="email" required><br>
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-        <label>Age:</label>
-        <input type="number" name="age" required><br>
-        <label>Admin:</label>
-        <input type="checkbox" name="is_admin"><br>
-        <button type="submit">Register</button>
-    </form>
-</main>
-
-</body>
-
-</html>
