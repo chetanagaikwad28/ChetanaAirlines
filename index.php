@@ -73,7 +73,7 @@ $airlineNews = [
                 <div class="row align-items-center">
                     <div class="col-auto">
                         <label class="form-check-label me-3"><input type="radio" name="trip" value="one-way" checked> One Way</label>
-                        <label class="form-check-label"><input type="radio" name="trip" value="round-trip"> Round Trip</label>
+                        <!-- <label class="form-check-label"><input type="radio" name="trip" value="round-trip"> Round Trip</label> -->
                     </div>
                     <div class="col-auto">
                         <span class="promo-code text-primary">Use promo code</span>
@@ -128,10 +128,10 @@ $airlineNews = [
                     </div>
 
 
-
+                    <!-- 
                     <div class="col">
                         <button type="button" class="btn btn-outline-primary w-100">Add return trip</button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row mt-3">
                     <div class="col">
