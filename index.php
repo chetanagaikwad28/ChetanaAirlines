@@ -8,46 +8,47 @@ $flightOffers = [
         'id' => 1,
         'destination' => 'Tata Neu HDFC Bank Credit Cards',
         'description' => 'Book tickets with Tata Neu HDFC credit card and get NeuCoins.',
-        'image' => 'image1.jpg'
+        'image' => 'images/Tata Neu.png'
     ],
     [
         'id' => 2,
         'destination' => 'Bajaj Pay UPI',
         'description' => 'Book your Air India flight tickets with Bajaj Pay UPI and receive 5% value back, up to INR 750.',
-        'image' => 'image2.jpg'
+        'image' => 'images/Bajaj Pay UPI.png'
     ],
     [
         'id' => 3,
         'destination' => 'Children below 15',
         'description' => 'Get 25% off on flight booking tickets when you book with Airline India.',
-        'image' => 'image3.jpg'
+        'image' => 'images/Children below 15.jpg'
     ],
     [
         'id' => 6,
         'destination' => 'Instant Discount Using ICICI Bank Cards',
         'description' => 'Book your flight tickets with ICICI Bank Credit or Debit Cards and get up to INR 2000 off.',
-        'image' => 'image4.jpg'
+        'image' => 'images/ICICI Bank Cards.jpg'
     ],
 ];
 
+// Example array of airline news (simplified)
 $airlineNews = [
     [
-        'image' => 'image1.jpg',
+        'image' => 'images/Archietecture.jpg',
         'alt' => 'New Look and Modern Architecture',
         'headline' => 'Low Cost Airline unveils a new look and modern architecture of its website.',
     ],
     [
-        'image' => 'image2.jpg',
+        'image' => 'images/Direct Flights Announcement.jpg',
         'alt' => 'Direct Flights Announcement',
         'headline' => 'Low Cost Airline announces new direct flights between Mumbai and Vijayawada.',
     ],
     [
-        'image' => 'image3.jpg',
+        'image' => 'images/New Route Announcementjpg.jpg',
         'alt' => 'New Route Announcement',
         'headline' => 'Low Cost Airline introduces direct flights between Bengaluru and Mumbai.',
     ],
     [
-        'image' => 'image4.jpg',
+        'image' => 'images/Additional Flights Announcement.jpg',
         'alt' => 'Additional Flights Announcement',
         'headline' => 'Low Cost Airline adds more flights between Jaipur and Mumbai to meet passenger demand.',
     ],
