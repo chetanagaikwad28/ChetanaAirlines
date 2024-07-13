@@ -135,9 +135,9 @@ $airlineNews = [
 
         <div class="news-section mt-4">
             <h2>Low Cost Airline News</h2>
-            <div class="news-container d-flex justify-content-between">
+            <div class="news-container d-flex justify-content-between row">
                 <?php foreach ($airlineNews as $news) : ?>
-                    <div class="news-item">
+                    <div class="news-item col-md-4">
                         <img src="<?php echo $news['image']; ?>" alt="<?php echo $news['alt']; ?>">
                         <p><?php echo $news['headline']; ?></p>
                     </div>
