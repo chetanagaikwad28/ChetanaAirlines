@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="fees_and_charges.php" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Info</a>
                     <ul class="dropdown-menu" aria-labelledby="infoDropdown">
-                        <li><a class="dropdown-item" href="#">Fees and Charges</a></li>
+                        <li><a class="dropdown-item" href="fees_and_charges.php">Fees and Charges</a></li>
                         <li><a class="dropdown-item" href="#">FAQs</a></li>
                         <li><a class="dropdown-item" href="#">Contact Us</a></li>
                     </ul>
