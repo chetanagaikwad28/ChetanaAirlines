@@ -27,7 +27,7 @@ $is_admin = $is_logged_in && isset($_SESSION['is_admin']) && $_SESSION['is_admin
         <div class="container d-flex justify-content-between align-items-center">
             <div class="logo">
                 <a href="https://firebasestorage.googleapis.com/v0/b/uniment-c0c23.appspot.com/o/reviewer%2Fchetana.jpg?alt=media&token=7d9c3889-76ce-4a20-b5a8-aa9efb69246f">
-                    <img src="images/aviation_logo-22.png" alt="Airline Logo" class="img-fluid">
+                    <img src="images/aviation_logo-22-white.png" alt="Airline Logo" class="img-fluid">
                 </a>
             </div>
 

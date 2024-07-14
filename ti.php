@@ -35,9 +35,9 @@ if ($resultFlights->num_rows > 0) {
         $columns = 10; // 1 to 10 columns
 
         // Insert seats for each row and column
-        for ($row = 1; $row <= $rows; $row++) {
-            for ($col = 1; $col <= $columns; $col++) {
-                // Generate seat number (e.g., 1A, 2A, ..., 10A, 1B, 2B, ..., 10B, ..., 1E, 2E, ..., 10E)
+        for ($col = 1; $col <= $columns; $col++) {
+            for ($row = 1; $row <= $rows; $row++) {
+                // Generate seat number (e.g., 1A, 1B, ..., 1E, 2A, 2B, ..., 2E, ..., 10E)
                 $seatNumber = $col . chr(64 + $row);
 
                 // Determine if this seat is a fire exit seat
