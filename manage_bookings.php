@@ -6,10 +6,8 @@ session_start();
 
 include('includes/header.php');
 
-
 // Check if user is logged in and retrieve user ID from session
 if (!isset($_SESSION['user_id'])) {
-    // header("Location: index.php");
     echo "
     <!DOCTYPE html>
     <html lang='en'>
@@ -20,7 +18,6 @@ if (!isset($_SESSION['user_id'])) {
         <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
         <style>
             body {
-                // display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
@@ -64,8 +61,6 @@ if (!isset($_SESSION['user_id'])) {
     </body>
     </html>
     ";
-
-
     exit();
 }
 
@@ -83,44 +78,47 @@ $stmt->bind_param("i", $userID);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// include('includes/header.php'); // Include your header file
 ?>
 
 <main>
     <div class="container mt-5">
         <h2>Your Bookings</h2>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Booking ID</th>
-                        <th>Flight Number</th>
-                        <th>Departure</th>
-                        <th>Arrival</th>
-                        <th>Passenger</th>
-                        <th>Seat Number</th>
-                        <th>Meal Preference</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()) : ?>
+            <?php if ($result->num_rows > 0) : ?>
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td><?php echo $row['BookingID']; ?></td>
-                            <td><?php echo $row['FlightNumber']; ?></td>
-                            <td><?php echo $row['DepartureLocation'] . ' - ' . $row['DepartureTime']; ?></td>
-                            <td><?php echo $row['ArrivalLocation'] . ' - ' . $row['ArrivalTime']; ?></td>
-                            <td><?php echo $row['PassengerName']; ?></td>
-                            <td><?php echo $row['SeatNumber']; ?></td>
-                            <td><?php echo $row['MealPreference']; ?></td>
-                            <td><?php echo ucfirst($row['status']); ?></td>
+                            <th>Booking ID</th>
+                            <th>Flight Number</th>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Passenger</th>
+                            <th>Seat Number</th>
+                            <th>Meal Preference</th>
+                            <th>Status</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()) : ?>
+                            <tr>
+                                <td><?php echo $row['BookingID']; ?></td>
+                                <td><?php echo $row['FlightNumber']; ?></td>
+                                <td><?php echo $row['DepartureLocation'] . ' - ' . $row['DepartureTime']; ?></td>
+                                <td><?php echo $row['ArrivalLocation'] . ' - ' . $row['ArrivalTime']; ?></td>
+                                <td><?php echo $row['PassengerName']; ?></td>
+                                <td><?php echo $row['SeatNumber']; ?></td>
+                                <td><?php echo $row['MealPreference']; ?></td>
+                                <td><?php echo ucfirst($row['status']); ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            <?php else : ?>
+                <div class="alert alert-info" role="alert">
+                    You have no bookings.
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<!-- <?php include('includes/footer.php'); // Include your footer file  -->
-        ?>
