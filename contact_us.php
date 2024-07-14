@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0+TA4q4euS7G1tL9GvTjHm9QzjszBtZQ9s0P86UcPPUGm0rPPN4RshKtANwCk2I" crossorigin="anonymous">
+    <title>Contact Us - Airline India</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0+TA4q4euS7G1tL9GvTjHm9QzjszBtZQ9s0P86UcPPUGm0rPPN4RshKtANwCk2I" crossorigin="anonymous">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #e0f7fa;
+            /* Light blue background */
         }
+
         .contact-container {
             background-color: #ffffff;
             border: 1px solid #dee2e6;
             border-radius: 0.5rem;
             padding: 2rem;
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
         }
+
         .navbar-custom {
             background-color: #004085;
-            padding: 0.5rem 1rem;
-            margin-bottom: 1rem;
+            /* Dark blue background */
+            padding: 1rem;
+            margin-bottom: 2rem;
             border-radius: 0.5rem;
         }
+
         .navbar-custom .navbar-brand {
             color: #ffffff;
             font-size: 1.5rem;
         }
+
         .contact-section {
             margin-bottom: 2rem;
         }
+
         .contact-section h5 {
-            color: #007bff;
+            color: #004085;
+            /* Dark blue heading */
             margin-bottom: 0.5rem;
         }
+
         .contact-section p {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
+
         .contact-section:last-of-type {
             margin-bottom: 0;
         }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
     <!-- Navigation Bar with Heading -->
     <nav class="navbar navbar-custom">
@@ -67,12 +89,18 @@
             <div class="contact-section">
                 <h5>Customer Support</h5>
                 <p>India : 0124-345678 0124-345678</p>
-                <p>*Calls may be recorded for training and quality purposes and for compliance with applicable regulatory requirements.</p>
+                <p>*Calls may be recorded for training and quality purposes and for compliance with applicable regulatory
+                    requirements.</p>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzV4Scd1NxkHl9pbMA1p6iYkMfH7/E3yG7arPbEe9tz3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+27mtL0EaBw2rZ2x0Gctczf4FuvHg" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz4fnFO9gybBogGzV4Scd1NxkHl9pbMA1p6iYkMfH7/E3yG7arPbEe9tz3" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+27mtL0EaBw2rZ2x0Gctczf4FuvHg" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
