@@ -9,43 +9,64 @@
 </head>
 
 <body>
-    <div class="plane">
-        <?php
-        include('../includes/db.php');
-        session_start();
-        // Function to release seats that have been locked for more than 10 minutes
-        function release_locked_seats($conn)
-        {
-            $current_time = date('Y-m-d H:i:s');
-            $sql = "UPDATE `seat` SET `Status` = 'free', `LockUntil` = NULL WHERE `Status` = 'locked' AND `LockUntil` <= NOW()";
-            // echo $current_time;
-            $conn->query($sql);
+    <style>
+        .legend {
+            width: fit-content;
+            position: absolute;
+            margin-top: 20px;
+            bottom: 20px;
+            text-align: center;
+            left: 10px;
         }
 
-        // Call the function to release locked seats
-        release_locked_seats($conn);
+        .legend img {
+            max-width: 100%;
+            height: auto;
+        }
 
-        $flightId = isset($_POST['flight_id']) ? intval($_POST['flight_id']) : null; // Default to 1 if not set
-        $sql = "SELECT * FROM seat WHERE FlightID = $flightId ORDER BY SeatID";
-        $result = $conn->query($sql);
+        .bigdiv {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <div class="bigdiv">
+        <div class="plane">
+            <?php
+            include('../includes/db.php');
+            session_start();
+            // Function to release seats that have been locked for more than 10 minutes
+            function release_locked_seats($conn)
+            {
+                $current_time = date('Y-m-d H:i:s');
+                $sql = "UPDATE `seat` SET `Status` = 'free', `LockUntil` = NULL WHERE `Status` = 'locked' AND `LockUntil` <= NOW()";
+                // echo $current_time;
+                $conn->query($sql);
+            }
 
-        if ($result->num_rows > 0) {
-            $rowCount = 0;
-            echo '<div class="row">';
-            while ($row = $result->fetch_assoc()) {
-                $seatClass = $row['Status'];
-                $seatNumber = $row['SeatNumber'];
-                $isFireExit = $row['IsFireExit'] ? ' fire-exit' : '';
+            // Call the function to release locked seats
+            release_locked_seats($conn);
 
-                if ($rowCount % 6 == 0 && $rowCount != 0) {
-                    echo '</div><div class="row">';
-                }
+            $flightId = isset($_POST['flight_id']) ? intval($_POST['flight_id']) : null; // Default to 1 if not set
+            $sql = "SELECT * FROM seat WHERE FlightID = $flightId ORDER BY SeatID";
+            $result = $conn->query($sql);
 
-                if ($rowCount % 3 == 0 && $rowCount != 0) {
-                    echo '<div class="gap"></div>';
-                }
+            if ($result->num_rows > 0) {
+                $rowCount = 0;
+                echo '<div class="row">';
+                while ($row = $result->fetch_assoc()) {
+                    $seatClass = $row['Status'];
+                    $seatNumber = $row['SeatNumber'];
+                    $isFireExit = $row['IsFireExit'] ? ' fire-exit' : '';
 
-                echo '
+                    if ($rowCount % 6 == 0 && $rowCount != 0) {
+                        echo '</div><div class="row">';
+                    }
+
+                    if ($rowCount % 3 == 0 && $rowCount != 0) {
+                        echo '<div class="gap"></div>';
+                    }
+
+                    echo '
                 <div class="seat ' . $seatClass . $isFireExit . '" data-seat-number="' . $seatNumber . '">
                     <div class="seat-number">' . $seatNumber . '</div>
                     <div class="headrest"></div>
@@ -54,22 +75,26 @@
                     <div class="armrest armrest-left"></div>
                     <div class="armrest armrest-right"></div>';
 
-                if ($seatClass == 'free') {
-                    echo '<button class="lock-button btn btn-primary">Lock</button>';
+                    if ($seatClass == 'free') {
+                        echo '<button class="lock-button btn btn-primary">Lock</button>';
+                    }
+                    echo '</div>';
+                    $rowCount++;
                 }
                 echo '</div>';
-                $rowCount++;
+                if (isset($_SESSION['user_id'])) {
+                    echo '<button id="book-selected-seats">Book Selected Seats</button>';
+                }
+            } else {
+                echo "0 results";
             }
-            echo '</div>';
-            if (isset($_SESSION['user_id'])) {
-                echo '<button id="book-selected-seats">Book Selected Seats</button>';
-            }
-        } else {
-            echo "0 results";
-        }
 
-        $conn->close();
-        ?>
+            $conn->close();
+            ?>
+        </div>
+        <div class="legend">
+            <img src="../images/Group 5.png" alt="Legend">
+        </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

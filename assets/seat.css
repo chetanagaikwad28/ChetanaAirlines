@@ -116,6 +116,9 @@ body {
     width: var(--plane-width);
 }
 
+
+
+
 @media (min-width: 768px) {
     :root {
         --seat-height: calc(var(--plane-width) * 0.1);
