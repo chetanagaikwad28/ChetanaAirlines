@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2024 at 02:12 PM
+-- Generation Time: Jul 14, 2024 at 09:23 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,36 +36,6 @@ CREATE TABLE `booking` (
   `BookingTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('booked','cancelled') NOT NULL DEFAULT 'booked'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`BookingID`, `UserID`, `FlightID`, `SeatID`, `PassengerID`, `BookingTime`, `status`) VALUES
-(7, 3, 2, 193, 10, '2024-07-12 16:35:43', 'booked'),
-(8, 3, 2, 193, 11, '2024-07-12 16:35:43', 'booked'),
-(9, 3, 2, 193, 12, '2024-07-12 16:43:35', 'booked'),
-(10, 3, 2, 193, 13, '2024-07-12 16:43:35', 'booked'),
-(11, 3, 2, 193, 14, '2024-07-12 16:45:00', 'booked'),
-(12, 3, 2, 193, 15, '2024-07-12 16:45:00', 'booked'),
-(13, 3, 2, 193, 17, '2024-07-12 16:50:10', 'booked'),
-(14, 3, 2, 193, 18, '2024-07-12 16:50:10', 'booked'),
-(15, 3, 2, 193, 19, '2024-07-12 16:53:15', 'booked'),
-(16, 3, 2, 193, 20, '2024-07-12 16:53:15', 'booked'),
-(17, 3, 2, 193, 21, '2024-07-12 16:54:02', 'booked'),
-(18, 3, 2, 193, 22, '2024-07-12 16:54:02', 'booked'),
-(19, 3, 2, 193, 23, '2024-07-12 16:54:28', 'booked'),
-(20, 3, 2, 193, 24, '2024-07-12 16:54:28', 'booked'),
-(21, 3, 2, 193, 25, '2024-07-12 16:59:55', 'booked'),
-(22, 3, 2, 193, 26, '2024-07-12 16:59:55', 'booked'),
-(23, 3, 2, 193, 27, '2024-07-12 17:00:22', 'booked'),
-(24, 3, 2, 193, 28, '2024-07-12 17:00:22', 'booked'),
-(25, 3, 2, 193, 29, '2024-07-12 17:02:27', 'booked'),
-(26, 3, 2, 193, 30, '2024-07-12 17:02:27', 'booked'),
-(27, 3, 2, 193, 31, '2024-07-12 17:05:36', 'booked'),
-(28, 3, 2, 193, 32, '2024-07-12 17:05:36', 'booked'),
-(29, 3, 12, 193, 33, '2024-07-12 21:04:15', 'booked'),
-(30, 3, 12, 193, 34, '2024-07-12 21:04:15', 'cancelled');
 
 --
 -- Triggers `booking`
@@ -134,8 +104,9 @@ CREATE TABLE `flight` (
 --
 
 INSERT INTO `flight` (`FlightID`, `PlaneID`, `FlightNumber`, `DepartureTime`, `ArrivalTime`, `DepartureLocation`, `ArrivalLocation`, `fare`, `Duration Time`, `CabinClass`) VALUES
-(1, 1, 'AI101', '2024-07-14 08:00:00', '2024-07-14 11:00:00', 'Delhi', 'Mumbai', 5000, 180, 1),
+(1, 1, 'AI101', '2024-07-15 08:00:00', '2024-07-15 11:00:00', 'Delhi', 'Mumbai', 5000, 180, 0),
 (2, 2, 'FL456', '2024-07-11 09:00:00', '2024-07-11 11:00:00', 'Chicago', 'Miami', 0, 0, 0),
+(3, 1, 'FL123', '2024-07-10 08:00:00', '2024-07-10 10:00:00', 'New York', 'Los Angeles', 10000, 0, 0),
 (4, 2, 'SG202', '2024-07-14 12:00:00', '2024-07-14 14:30:00', 'Mumbai', 'Bangalore', 4500, 150, 1),
 (5, 3, '6E303', '2024-07-14 15:00:00', '2024-07-14 17:00:00', 'Bangalore', 'Hyderabad', 3500, 120, 1),
 (6, 4, 'G804', '2024-07-14 18:00:00', '2024-07-14 21:00:00', 'Hyderabad', 'Chennai', 4000, 180, 2),
@@ -144,8 +115,7 @@ INSERT INTO `flight` (`FlightID`, `PlaneID`, `FlightNumber`, `DepartureTime`, `A
 (9, 2, 'SG707', '2024-07-14 10:00:00', '2024-07-14 12:00:00', 'Delhi', 'Jaipur', 3000, 120, 1),
 (10, 3, '6E808', '2024-07-14 13:00:00', '2024-07-14 15:00:00', 'Jaipur', 'Ahmedabad', 3200, 120, 2),
 (11, 4, 'G909', '2024-07-14 14:00:00', '2024-07-14 17:00:00', 'Ahmedabad', 'Pune', 4800, 180, 2),
-(12, 5, 'UK010', '2024-07-14 16:00:00', '2024-07-14 19:00:00', 'Pune', 'Goa', 4000, 180, 1),
-(101, 1, 'FL123', '2024-07-10 08:00:00', '2024-07-10 10:00:00', 'New York', 'Los Angeles', 10000, 0, 0);
+(12, 5, 'UK010', '2024-07-14 16:00:00', '2024-07-14 19:00:00', 'Pune', 'Goa', 4000, 180, 1);
 
 -- --------------------------------------------------------
 
@@ -170,7 +140,6 @@ CREATE TABLE `passenger` (
 --
 
 INSERT INTO `passenger` (`PassengerID`, `UserID`, `Name`, `Age`, `AgeGroup`, `SeatNumber`, `Email`, `PhoneNumber`, `MealPreference`) VALUES
-(1, 1, 'John Doe', 25, 'adult', '', NULL, NULL, 'none'),
 (8, 3, 'prakash', 2, 'adult', '1A', 'pkamzare@gmail.com', '9405528955', 'non-veg'),
 (9, 3, 'fast', 2, 'adult', '2A', 'mike@hotmail.com', '12364789523', 'veg'),
 (10, 1, 'prakash', 2, 'adult', 'A1', 'pkamzare@gmail.com', '9405528955', 'non-veg'),
@@ -197,7 +166,10 @@ INSERT INTO `passenger` (`PassengerID`, `UserID`, `Name`, `Age`, `AgeGroup`, `Se
 (31, 1, 'prakash', 2, 'adult', '1A', 'pkamzare@gmail.com', '9405528955', 'non-veg'),
 (32, 1, 'fast', 2, 'adult', '2A', 'mike@hotmail.com', '12364789523', 'veg'),
 (33, 1, 'prakash', 16, 'adult', '3A', 'pkamzare@gmail.com', '9405528955', 'vegan'),
-(34, 1, 'fast', 8, 'senior', '4A', 'mike@hotmail.com', '12364789523', 'non-veg');
+(34, 1, 'fast', 8, 'senior', '4A', 'mike@hotmail.com', '12364789523', 'non-veg'),
+(35, NULL, 'saurabh', 62, 'senior', '9A', 'saurabh@hotmail.com', '8799983202', 'veg'),
+(36, NULL, 'saurabh', 62, 'senior', '9A', 'saurabh@hotmail.com', '8799983202', 'veg'),
+(37, 3, 'saurabh', 62, 'senior', '9A', 'saurabh@hotmail.com', '8799983202', 'veg');
 
 -- --------------------------------------------------------
 
@@ -242,72 +214,6 @@ CREATE TABLE `seat` (
   `IsFireExit` enum('1','0') NOT NULL DEFAULT '0',
   `LockUntil` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `seat`
---
-
-INSERT INTO `seat` (`SeatID`, `FlightID`, `SeatNumber`, `Status`, `IsFireExit`, `LockUntil`) VALUES
-(134, 1, '1A', 'free', '0', NULL),
-(135, 1, '1B', 'free', '0', NULL),
-(136, 1, '1C', 'free', '0', NULL),
-(137, 1, '1D', 'free', '0', NULL),
-(138, 1, '1E', 'free', '0', NULL),
-(139, 1, '1F', 'free', '0', NULL),
-(140, 1, '2A', 'free', '0', NULL),
-(141, 1, '2B', 'free', '0', NULL),
-(142, 1, '2C', 'free', '0', NULL),
-(143, 1, '2D', 'free', '0', NULL),
-(144, 1, '2E', 'free', '0', NULL),
-(145, 1, '2F', 'free', '0', NULL),
-(146, 1, '3A', 'free', '0', NULL),
-(147, 1, '3B', 'free', '0', NULL),
-(148, 1, '3C', 'free', '0', NULL),
-(149, 1, '3D', 'locked', '0', NULL),
-(150, 1, '3E', 'free', '0', NULL),
-(151, 1, '3F', 'free', '0', NULL),
-(152, 1, '4A', 'free', '0', NULL),
-(153, 1, '4B', 'free', '0', NULL),
-(154, 1, '4C', 'free', '0', NULL),
-(155, 1, '4D', 'booked', '0', NULL),
-(156, 1, '4E', 'free', '0', NULL),
-(157, 1, '4F', 'free', '0', NULL),
-(158, 1, '5A', 'free', '0', NULL),
-(159, 1, '5B', 'free', '0', NULL),
-(160, 1, '5C', 'locked', '0', NULL),
-(161, 1, '5D', 'free', '0', NULL),
-(162, 1, '5E', 'free', '0', NULL),
-(163, 1, '5F', 'free', '0', NULL),
-(164, 1, '6A', 'booked', '0', NULL),
-(165, 1, '6B', 'free', '0', NULL),
-(166, 1, '6C', 'free', '0', NULL),
-(167, 1, '6D', 'free', '0', NULL),
-(168, 1, '6E', 'free', '0', NULL),
-(169, 1, '6F', 'free', '0', NULL),
-(170, 1, '7A', 'free', '0', NULL),
-(171, 1, '7B', 'free', '0', NULL),
-(172, 1, '7C', 'free', '0', NULL),
-(173, 1, '7D', 'free', '0', NULL),
-(174, 1, '7E', 'free', '0', NULL),
-(175, 1, '7F', 'free', '0', NULL),
-(176, 1, '8A', 'free', '0', NULL),
-(177, 1, '8B', 'free', '0', NULL),
-(178, 1, '8C', 'free', '0', NULL),
-(179, 1, '8D', 'free', '0', NULL),
-(180, 1, '8E', 'free', '0', NULL),
-(181, 1, '8F', 'free', '0', NULL),
-(182, 1, '9A', 'free', '0', NULL),
-(183, 1, '9B', 'free', '0', NULL),
-(184, 1, '9C', 'free', '0', NULL),
-(185, 1, '9D', 'free', '0', NULL),
-(186, 1, '9E', 'free', '0', NULL),
-(187, 1, '9F', 'free', '0', NULL),
-(188, 1, '10A', 'free', '1', NULL),
-(189, 1, '10B', 'free', '1', NULL),
-(190, 1, '10C', 'free', '1', NULL),
-(191, 1, '10D', 'free', '1', NULL),
-(192, 1, '10E', 'free', '1', NULL),
-(193, 1, '10F', 'free', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -389,19 +295,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `flight`
 --
 ALTER TABLE `flight`
-  MODIFY `FlightID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `FlightID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `passenger`
 --
 ALTER TABLE `passenger`
-  MODIFY `PassengerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `PassengerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `plane`
@@ -413,7 +319,7 @@ ALTER TABLE `plane`
 -- AUTO_INCREMENT for table `seat`
 --
 ALTER TABLE `seat`
-  MODIFY `SeatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `SeatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3197;
 
 --
 -- AUTO_INCREMENT for table `user`
