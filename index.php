@@ -64,6 +64,19 @@ $airlineNews = [
     <title>Flight Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="includes/style.css">
+    <style>
+        .why-choose-us img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .news-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -120,18 +133,10 @@ $airlineNews = [
                     </div>
                 </div>
                 <div class="row mt-3">
-
-
                     <div class="col">
                         <label for="departure_date">Departure Date</label>
                         <input type="date" id="departure_date" name="departure_date" class="form-control" required>
                     </div>
-
-
-                    <!-- 
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-primary w-100">Add return trip</button>
-                    </div> -->
                 </div>
                 <div class="row mt-3">
                     <div class="col">
@@ -150,15 +155,31 @@ $airlineNews = [
                     </div>
                 </div>
             </form>
+        </div>
 
+        <!-- Why Choose Our Website Section -->
+        <div class="why-choose-us mt-5 bg-light p-5 rounded shadow-sm">
+            <h2>Why choose our airline</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Our Airline India gives the best offers and deals on flight bookings.
+                    We ensure the highest standards of safety and comfort for our passengers.
+                    24/7 customer support to assist you with all your travel needs. Easy booking 
+                    process and user-friendly website.
+                    Exclusive discounts and rewards for frequent flyers.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="images/Aeroplane.jpg" alt="Aeroplane" class="img-fluid rounded">
+                </div>
+            </div>
         </div>
 
         <div class="news-section mt-4">
             <h2>Low Cost Airline News</h2>
-            <div class="news-container d-flex justify-content-between row">
+            <div class="news-container row">
                 <?php foreach ($airlineNews as $news) : ?>
-                    <div class="news-item col-md-4">
-                        <img src="<?php echo $news['image']; ?>" alt="<?php echo $news['alt']; ?>">
+                    <div class="news-item col-md-3 mb-4">
+                        <img src="<?php echo $news['image']; ?>" alt="<?php echo $news['alt']; ?>" class="img-fluid">
                         <p><?php echo $news['headline']; ?></p>
                     </div>
                 <?php endforeach; ?>
@@ -170,7 +191,7 @@ $airlineNews = [
             <h2>Latest Flight Offers</h2>
             <div class="row">
                 <?php foreach ($flightOffers as $offer) : ?>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-3 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <?php if (isset($offer['image'])) : ?>
@@ -193,12 +214,13 @@ $airlineNews = [
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h5>Get to Know Us</h5>
+                    <h5>Get to Know Airline India</h5>
                     <ul class="list-unstyled">
                         <li>About us</li>
                         <li>Leadership Team</li>
                         <li>Investor Relations</li>
                         <li>Seat/Aircraft information</li>
+                        <li>Career Opportunities</li>
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -215,7 +237,7 @@ $airlineNews = [
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h5>Quick links</h5>
+                    <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li>Offers</li>
                         <li>Advertise with us</li>
@@ -227,11 +249,18 @@ $airlineNews = [
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h5>Our Awards</h5>
+                    <h5>Contact Us</h5>
                     <ul class="list-unstyled">
-                        <li><img src="award1.png" alt="Best Low Cost Airline - India" class="img-fluid"></li>
-                        <li><img src="award3.png" alt="Passenger Choice Award" class="img-fluid"></li>
+                        <li><strong>Registered Office:</strong> Airline India, ABC Street, XYZ City, Country</li>
+                        <li><strong>Corporate Office:</strong> Airline India, DEF Street, UVW City, Country</li>
+                        <li><strong>Customer Support:</strong> +123 456 7890</li>
+                        <li>Email: support@airlineindia.com</li>
                     </ul>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <p class="mb-0">&copy; <?php echo date("Y"); ?> Airline India. All rights reserved.</p>
                 </div>
             </div>
         </div>
