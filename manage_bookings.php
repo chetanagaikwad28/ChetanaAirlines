@@ -10,6 +10,62 @@ include('includes/header.php');
 // Check if user is logged in and retrieve user ID from session
 if (!isset($_SESSION['user_id'])) {
     // header("Location: index.php");
+    echo "
+    <!DOCTYPE html>
+    <html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Login Required</title>
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
+        <style>
+            body {
+                // display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #e0f7fa;
+                margin: 0;
+            }
+            .card {
+                max-width: 400px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                background: rgba(255, 255, 255, 0.9);
+                padding: 20px;
+                text-align: center;
+                animation: slideIn 0.5s ease forwards;
+            }
+            .warning-icon {
+                font-size: 3rem;
+                color: #dc3545;
+            }
+            @keyframes slideIn {
+                0% {
+                    transform: translateY(-50px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class='card'>
+            <div class='warning-icon mb-3'>⚠️</div>
+            <h3 class='mb-3'>Login Required</h3>
+            <p class='mb-3'>Please log in to access this feature.</p>
+            <a href='login.php' class='btn btn-primary'>Log In</a>
+        </div>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'></script>
+    </body>
+    </html>
+    ";
+
+
     exit();
 }
 

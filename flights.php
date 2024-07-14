@@ -1,7 +1,12 @@
 <?php
 include('includes/db.php');
 session_start();
-
+if (!empty($_SESSION)) {
+    // Loop through each session variable and print the key-value pairs
+    foreach ($_SESSION as $key => $value) {
+        echo "Key: " . htmlspecialchars($key) . " - Value: " . htmlspecialchars($value) . "<br>";
+    }
+}
 // Retrieve the POST variables
 $from = $_POST['from'];
 $to = $_POST['to'];
@@ -73,7 +78,7 @@ include('includes/header.php');
                                 </td>
                             <?php else : ?>
                                 <td>
-                                    <form method="POST" action="book.php">
+                                    <form method="POST" action="seat/seat.php">
                                         <input type="hidden" name="flight_id" value="<?php echo $row['FlightID']; ?>">
                                         <button type="submit" class="btn btn-success btn-sm">Book</button>
                                     </form>

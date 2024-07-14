@@ -16,7 +16,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #e0f7fa; /* Light blue background */
+            background-color: #e0f7fa;
+            /* Light blue background */
         }
 
         .form-container {
@@ -113,14 +114,37 @@
         // Retrieve the flight ID and selected seats from PHP
         const flightId = <?php echo json_encode($_POST['flight_id']); ?>;
         const selectedSeats = <?php echo json_encode($_POST['seat_numbers']); ?>;
+        <?php
+        // Assuming $conn is the established database connection
+        include('includes/db.php');
 
+        // SQL query to fetch fire exit seats
+        $sql = "SELECT SeatNumber FROM seat WHERE IsFireExit = '1'";
+        $result = $conn->query($sql);
+
+        $fireExitSeats = [];
+        if ($result->num_rows > 0) {
+            // Fetch all fire exit seats into an array
+            while ($row = $result->fetch_assoc()) {
+                $fireExitSeats[] = $row['SeatNumber'];
+            }
+        } else {
+            echo "console.log('No fire exit seats found.');";
+        }
+
+        // Encode the PHP array as a JSON string
+        $fireExitSeatsJson = json_encode($fireExitSeats);
+        ?>
+        const fireExitSeats = <?php echo $fireExitSeatsJson; ?>;
         let passengerCount = 0;
-
+        console.log(fireExitSeats);
         // Function to create a new passenger form
         function createPassengerForm(seatNumber) {
             passengerCount++;
+            const isFireExitSeat = fireExitSeats.includes(seatNumber);
+
             return `
-                <div class="passenger-form">
+                <div class="passenger-form" id="passenger-form-${passengerCount}">
                     <h5>Passenger ${passengerCount}</h5>
                     <div class="form-group row align-items-center mt-3">
                         <div class="col-md-3">
@@ -144,6 +168,16 @@
                             <label for="seatNumber${passengerCount}" class="form-label">Seat Number</label>
                             <input type="text" class="form-control" id="seatNumber${passengerCount}" name="seatNumber${passengerCount}" value="${seatNumber}" placeholder="Enter seat number" required readonly>
                         </div>
+                        ${isFireExitSeat ? `
+                        <div class="col-md-12 mt-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="fireExitKnowledge${passengerCount}" name="fireExitKnowledge${passengerCount}" required>
+                                <label class="form-check-label" for="fireExitKnowledge${passengerCount}">
+                                    I confirm that I am an adult and have prior knowledge of fire exit procedures.
+                                </label>
+                            </div>
+                        </div>
+                        ` : ''}
                     </div>
                     <div class="form-group row align-items-center mt-3">
                         <div class="col-md-4">
@@ -176,6 +210,21 @@
                 passengerFields.insertAdjacentHTML('beforeend', createPassengerForm(seat));
             });
         }
+
+        // Client-side validation for fire exit seats
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            const fireExitForms = document.querySelectorAll('.passenger-form');
+            fireExitForms.forEach((form, index) => {
+                const seatNumber = form.querySelector(`#seatNumber${index + 1}`).value;
+                const age = form.querySelector(`#age${index + 1}`).value;
+                const fireExitKnowledge = form.querySelector(`#fireExitKnowledge${index + 1}`);
+
+                if (fireExitSeats.includes(seatNumber) && (age < 12 || !fireExitKnowledge.checked)) {
+                    event.preventDefault();
+                    alert(`Passenger ${index + 1} must be an adult and acknowledge fire exit procedures to book seat ${seatNumber}.`);
+                }
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

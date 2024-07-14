@@ -153,22 +153,22 @@
             <!-- Payment Options -->
             <div class="payment-option">
                 <input type="radio" name="payment_method" id="upi" value="UPI" required>
-                <img src="upi.png" alt="UPI">
+                <img src="images/upi-icon.png" alt="UPI">
                 <label for="upi">UPI</label>
             </div>
             <div class="payment-option">
                 <input type="radio" name="payment_method" id="credit-card" value="Credit/Debit Card" required>
-                <img src="credit-card.png" alt="Credit Card">
+                <img src="images/debit-card-credit.png" alt="Credit Card">
                 <label for="credit-card">Credit/Debit Card</label>
             </div>
             <div class="payment-option">
                 <input type="radio" name="payment_method" id="gift-voucher" value="Gift Voucher" required>
-                <img src="gift-voucher.png" alt="Gift Voucher">
+                <img src="images/gift voucher.png" alt="Gift Voucher">
                 <label for="gift-voucher">Gift Voucher</label>
             </div>
             <div class="payment-option">
                 <input type="radio" name="payment_method" id="net-banking" value="Net Banking" required>
-                <img src="net-banking.png" alt="Net Banking">
+                <img src="images/Net Banking.png" alt="Net Banking">
                 <label for="net-banking">Net Banking</label>
             </div>
 

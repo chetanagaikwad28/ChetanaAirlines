@@ -12,6 +12,7 @@
     <div class="plane">
         <?php
         include('../includes/db.php');
+        session_start();
         // Function to release seats that have been locked for more than 10 minutes
         function release_locked_seats($conn)
         {
@@ -60,7 +61,9 @@
                 $rowCount++;
             }
             echo '</div>';
-            echo '<button id="book-selected-seats">Book Selected Seats</button>';
+            if (isset($_SESSION['user_id'])) {
+                echo '<button id="book-selected-seats">Book Selected Seats</button>';
+            }
         } else {
             echo "0 results";
         }
@@ -73,25 +76,32 @@
             const flightId = <?php echo json_encode($flightId); ?>;
             const selectedSeats = [];
 
-            document.querySelectorAll('.seat.free').forEach(seat => {
-                seat.addEventListener('click', function() {
-                    const seatNumber = this.dataset.seatNumber;
-                    if (this.classList.contains('selected')) {
-                        this.classList.remove('selected');
-                        const index = selectedSeats.indexOf(seatNumber);
-                        if (index > -1) {
-                            selectedSeats.splice(index, 1);
-                        }
-                    } else {
-                        if (selectedSeats.length < 6) {
-                            this.classList.add('selected');
-                            selectedSeats.push(seatNumber);
+
+            <?php
+            if (isset($_SESSION['user_id'])) {
+            ?>
+                document.querySelectorAll('.seat.free').forEach(seat => {
+                    seat.addEventListener('click', function() {
+                        const seatNumber = this.dataset.seatNumber;
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const index = selectedSeats.indexOf(seatNumber);
+                            if (index > -1) {
+                                selectedSeats.splice(index, 1);
+                            }
                         } else {
-                            alert('You can only select up to 6 seats.');
+                            if (selectedSeats.length < 6) {
+                                this.classList.add('selected');
+                                selectedSeats.push(seatNumber);
+                            } else {
+                                alert('You can only select up to 6 seats.');
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            <?php
+            }
+            ?>
 
             document.getElementById('book-selected-seats').addEventListener('click', function() {
                 if (selectedSeats.length === 0) {
