@@ -42,3 +42,41 @@ main {
     /* aspect-ratio: 1; */
     height: 80px;
 }
+
+.fixed-image {
+    height: 200px;
+    /* width: 80px; */
+    /* Set a specific height */
+    object-fit: cover;
+    /* Ensure the image covers the entire area without distortion */
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    /* Adjust the font size for better readability */
+    margin-top: 1rem;
+    /* Add some space between the image and text */
+}
+
+.why-choose-us img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.news-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.offers-section .card {
+    height: 100%;
+}
+
+.offers-section .card img {
+    object-fit: contain;
+    height: 200px;
+}

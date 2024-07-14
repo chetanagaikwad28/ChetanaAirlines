@@ -70,11 +70,21 @@ $airlineNews = [
             height: auto;
             object-fit: cover;
         }
+
         .news-item {
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 5px;
             background-color: #fff;
+        }
+
+        .offers-section .card {
+            height: 100%;
+        }
+
+        .offers-section .card img {
+            object-fit: contain;
+            height: 200px;
         }
     </style>
 </head>
@@ -163,44 +173,48 @@ $airlineNews = [
             <div class="row">
                 <div class="col-md-6">
                     <p>Our Airline India gives the best offers and deals on flight bookings.
-                    We ensure the highest standards of safety and comfort for our passengers.
-                    24/7 customer support to assist you with all your travel needs. Easy booking 
-                    process and user-friendly website.
-                    Exclusive discounts and rewards for frequent flyers.</p>
+                        We ensure the highest standards of safety and comfort for our passengers.
+                        24/7 customer support to assist you with all your travel needs. Easy booking
+                        process and user-friendly website.
+                        Exclusive discounts and rewards for frequent flyers.</p>
                 </div>
                 <div class="col-md-6">
                     <img src="images/Aeroplane.jpg" alt="Aeroplane" class="img-fluid rounded">
                 </div>
             </div>
         </div>
-
         <div class="news-section mt-4">
             <h2>Low Cost Airline News</h2>
             <div class="news-container row">
                 <?php foreach ($airlineNews as $news) : ?>
-                    <div class="news-item col-md-3 mb-4">
-                        <img src="<?php echo $news['image']; ?>" alt="<?php echo $news['alt']; ?>" class="img-fluid">
-                        <p><?php echo $news['headline']; ?></p>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="<?php echo $news['image']; ?>" alt="<?php echo $news['alt']; ?>" class="img-fluid card-img-top fixed-image">
+                            <div class="card-body d-flex flex-column">
+                                <p class="card-title"><?php echo $news['headline']; ?></p>
+                            </div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <style>
+
+        </style>
+
 
         <!-- Offers Section -->
         <div class="offers-section mt-4">
             <h2>Latest Flight Offers</h2>
             <div class="row">
                 <?php foreach ($flightOffers as $offer) : ?>
-                    <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <?php if (isset($offer['image'])) : ?>
-                                    <img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['destination']; ?>" class="img-fluid mb-3">
-                                <?php endif; ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="<?php echo $offer['image']; ?>" alt="<?php echo $offer['destination']; ?>" class="card-img-top">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?php echo $offer['destination']; ?></h5>
-                                <?php if (isset($offer['description'])) : ?>
-                                    <p class="card-text"><?php echo $offer['description']; ?></p>
-                                <?php endif; ?>
+                                <p class="card-text"><?php echo $offer['description']; ?></p>
                             </div>
                         </div>
                     </div>
