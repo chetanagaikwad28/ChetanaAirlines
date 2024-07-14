@@ -1,59 +1,13 @@
-echo "
-<!DOCTYPE html>
-<html lang='en'>
-
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Payment Success</title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #e0f7fa;
-        }
-
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            text-align: center;
-            animation: popUp 0.5s ease forwards;
-        }
-
-        .celebrate-icon {
-            font-size: 4rem;
-            color: #28a745;
-        }
-
-        @keyframes popUp {
-            0% {
-                transform: scale(0);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class='card'>
-        <div class='card-body'>
-            <div class='celebrate-icon'>🎉</div>
-            <h3 class='card-title'>Payment Successful!</h3>
-            <p class='card-text'>Thank you for your payment. Your booking has been successfully processed.</p>
-            <a href='index.php' class='btn btn-primary mt-3'>Back to Home</a>
-        </div>
-    </div>
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'></script>
-</body>
-
-</html>
-";
+INSERT INTO `flight` (`FlightID`, `PlaneID`, `FlightNumber`, `DepartureTime`, `ArrivalTime`, `DepartureLocation`, `ArrivalLocation`, `fare`, `Duration Time`, `CabinClass`) VALUES
+(1, 201, 'SG501', '2024-07-16 05:30:00', '2024-07-16 07:30:00', 'Delhi', 'Mumbai', 4500, 120, 1),
+(2, 202, '6E302', '2024-07-16 08:00:00', '2024-07-16 10:00:00', 'Mumbai', 'Bangalore', 4000, 120, 2),
+(3, 203, 'AI505', '2024-07-16 11:00:00', '2024-07-16 13:00:00', 'Bangalore', 'Hyderabad', 3500, 120, 1),
+(4, 204, 'UK303', '2024-07-16 14:00:00', '2024-07-16 16:00:00', 'Hyderabad', 'Chennai', 3000, 120, 3),
+(5, 205, 'G8101', '2024-07-16 17:00:00', '2024-07-16 19:30:00', 'Chennai', 'Kolkata', 5000, 150, 2),
+(6, 206, '6E204', '2024-07-16 20:00:00', '2024-07-16 22:30:00', 'Kolkata', 'Delhi', 5500, 150, 1),
+(7, 207, 'AI709', '2024-07-17 05:00:00', '2024-07-17 07:00:00', 'Delhi', 'Jaipur', 3200, 120, 2),
+(8, 208, 'UK407', '2024-07-17 08:00:00', '2024-07-17 10:00:00', 'Jaipur', 'Ahmedabad', 3700, 120, 1),
+(9, 209, 'SG708', '2024-07-17 11:00:00', '2024-07-17 13:00:00', 'Ahmedabad', 'Surat', 2800, 120, 3),
+(10, 210, '6E408', '2024-07-17 14:00:00', '2024-07-17 16:00:00', 'Surat', 'Pune', 4100, 120, 1),
+(11, 211, 'AI511', '2024-07-17 17:00:00', '2024-07-17 19:30:00', 'Pune', 'Goa', 4300, 150, 2),
+(12, 212, 'G8123', '2024-07-17 20:00:00', '2024-07-17 22:30:00', 'Goa', 'Mumbai', 3900, 150, 1);
