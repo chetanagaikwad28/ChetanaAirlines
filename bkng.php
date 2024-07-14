@@ -36,8 +36,8 @@
             border: 1px solid #007bff;
             border-radius: 10px;
             padding: 10px;
-            width: 100%;
-            margin-top: 5px;
+            /* width: 100%; */
+            margin: 5px;
             color: #333;
         }
 

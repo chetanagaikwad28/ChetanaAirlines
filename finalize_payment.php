@@ -13,14 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $paymentStatus = 'paid'; // Replace with actual payment processing logic
 
     if ($paymentStatus === 'paid') {
-        // Prepare statement for inserting passenger details into the database
-        $insertPassengerQuery = "INSERT INTO passenger (UserID, Name, Age, AgeGroup, SeatNumber, Email, PhoneNumber, MealPreference) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmtPassenger = $conn->prepare($insertPassengerQuery);
-
-        // Prepare statement for inserting booking details into the database
-        $insertBookingQuery = "INSERT INTO booking (UserID, FlightID, PassengerID) VALUES (?, ?, ?)";
-        $stmtBooking = $conn->prepare($insertBookingQuery);
-
         // Loop through submitted passenger data
         for ($i = 1; isset($_POST["name$i"]); $i++) {
             $name = filter_var($_POST["name$i"], FILTER_SANITIZE_STRING);
@@ -31,27 +23,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mealPreference = $_POST["mealPreference$i"];
             $seatNumber = $_POST["seatNumber$i"];
 
-            // Bind parameters and execute statement to insert passenger
-            $stmtPassenger->bind_param("isisssss", $userId, $name, $age, $ageGroup, $seatNumber, $email, $phone, $mealPreference);
-            $stmtPassenger->execute();
+            // Insert passenger details into the database
+            $insertPassengerQuery = "INSERT INTO passenger (UserID, Name, Age, AgeGroup, SeatNumber, Email, PhoneNumber, MealPreference)
+                                     VALUES ('$userId', '$name', '$age', '$ageGroup', '$seatNumber', '$email', '$phone', '$mealPreference')";
+            if (mysqli_query($conn, $insertPassengerQuery)) {
+                // Get the last inserted PassengerID
+                $passengerId = mysqli_insert_id($conn);
 
-            // Get the last inserted PassengerID
-            $passengerId = $stmtPassenger->insert_id;
-
-            // Bind parameters and execute statement to insert booking
-            $stmtBooking->bind_param("iii", $userId, $flightId, $passengerId);
-            $stmtBooking->execute();
+                // Insert booking details into the database
+                $insertBookingQuery = "INSERT INTO booking (UserID, FlightID, PassengerID) VALUES ('$userId', '$flightId', '$passengerId')";
+                mysqli_query($conn, $insertBookingQuery);
+            } else {
+                echo "<div class='alert alert-danger mt-2' role='alert'>Error: " . mysqli_error($conn) . "</div>";
+                exit();
+            }
         }
-
-        // Close the statements
-        $stmtPassenger->close();
-        $stmtBooking->close();
 
         // Display a success message
         echo "
         <!DOCTYPE html>
         <html lang='en'>
-        
         <head>
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -65,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     height: 100vh;
                     background-color: #e0f7fa;
                 }
-        
                 .card {
                     border: none;
                     border-radius: 15px;
@@ -75,24 +65,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     text-align: center;
                     animation: popUp 0.5s ease forwards;
                 }
-        
                 .celebrate-icon {
                     font-size: 4rem;
                     color: #28a745;
                 }
-        
                 @keyframes popUp {
                     0% {
                         transform: scale(0);
                     }
-        
                     100% {
                         transform: scale(1);
                     }
                 }
             </style>
         </head>
-        
         <body>
             <div class='card'>
                 <div class='card-body'>
@@ -104,9 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'></script>
         </body>
-        
-        </html>
-        ";
+        </html>";
 
         // Redirect to confirmation or success page after a short delay
         header("refresh:3;url=index.php");
@@ -118,4 +102,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the database connection
-$conn->close();
+mysqli_close($conn);

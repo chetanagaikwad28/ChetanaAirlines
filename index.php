@@ -64,29 +64,7 @@ $airlineNews = [
     <title>Flight Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="includes/style.css">
-    <style>
-        .why-choose-us img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
 
-        .news-item {
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-
-        .offers-section .card {
-            height: 100%;
-        }
-
-        .offers-section .card img {
-            object-fit: contain;
-            height: 200px;
-        }
-    </style>
 </head>
 
 <body>
